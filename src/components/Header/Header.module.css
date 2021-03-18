@@ -4,7 +4,8 @@
   position: sticky;
   top: 0;
   height: 70px;
-  background-color: white;
+  background-color: #fafafa;
+  color: rgba(63, 66, 87);
 }
 
 .header__container {
@@ -12,10 +13,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 60%;
+  max-width: 70%;
   margin: 0 auto;
 }
 
+
+.header__title {
+  margin-left: 20px;
+}
+
+.header__title > h4 {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.header__title > h6 {
+  text-transform: uppercase;
+  font-weight: 400;
+}
 
 .header__logo {
   display: flex;
@@ -28,5 +43,6 @@
 }
 
 .header__logo > img {
+  object-fit: contain;
   width: 50px;
 }

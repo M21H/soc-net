@@ -1,9 +1,10 @@
-.menu {
+.headerMenu {
   display: flex;
   list-style-type: none;
   cursor: pointer;
 }
 
-.menu__item {
+.headerMenu__item {
+  font-weight: 500;
   margin-right: 30px;
 }
