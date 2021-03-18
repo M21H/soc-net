@@ -1,0 +1,43 @@
+.topSearchForm,
+.topSearchForm__input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topSearchForm {
+  height: 70px;
+  width: 100%;
+  background-color: rgba(63, 66, 87);
+}
+
+.topSearchForm__input {
+  width: 27%;
+  background-color: #494c62;
+  padding: 0 20px;
+}
+
+.topSearchForm__input > input {
+  flex: 1;
+  height: 70px;
+  border: none;
+  background: none;
+  color: #888da8;
+}
+
+.topSearchForm__input > input:focus {
+  outline: none;
+}
+
+.topSearchForm__input > input::placeholder {
+  color: #888da8;
+}
+
+.topSearchForm__login {
+  display: grid;
+  place-items: center;
+  background-color: #ef5a39;
+  color: white;
+  height: 70px;
+  width: 70px;
+}
