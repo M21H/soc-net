@@ -1,3 +1,8 @@
 .app__main {
   margin-left: 70px;
 }
+
+.app {
+  background-color: rgba(63, 66, 87, .1);
+  /* height: 100vh; */
+}
