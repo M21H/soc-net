@@ -5,13 +5,13 @@ import ProfileMenu from './ProfileMenu/ProfileMenu'
 import MyPosts from './ProfileMenu/MyPosts/MyPosts'
 import { Route, Switch } from 'react-router-dom'
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div className={style.profile}>
       <ProfileInfo />
       <ProfileMenu />
       <Switch>
-        <Route path='/profile/posts' component={MyPosts} />
+        <Route path='/profile/posts' render={() => <MyPosts posts={props.profilePage.posts} /> } />
       </Switch>
     </div>
   )
