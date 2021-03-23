@@ -5,13 +5,24 @@ import ProfileMenu from './ProfileMenu/ProfileMenu'
 import MyPosts from './ProfileMenu/MyPosts/MyPosts'
 import { Route, Switch } from 'react-router-dom'
 
-const Profile = (props) => {
+const Profile = props => {
+  
   return (
     <div className={style.profile}>
       <ProfileInfo />
       <ProfileMenu />
       <Switch>
-        <Route path='/profile/posts' render={() => <MyPosts posts={props.profilePage.posts} /> } />
+        <Route
+          path='/profile/posts'
+          render={() => (
+            <MyPosts
+              posts={props.profilePage.posts}
+              addPost={props.addPost}
+              newPostText={props.profilePage.newPostText}
+              updateNewPostChange={props.updateNewPostChange}
+            />
+          )}
+        />
       </Switch>
     </div>
   )
