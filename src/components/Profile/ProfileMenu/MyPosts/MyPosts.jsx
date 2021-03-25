@@ -1,5 +1,4 @@
 import React from 'react'
-import MessageSender from './MessageSender/MessageSender'
 import style from './MyPosts.module.css'
 import Post from './Post/Post'
 
@@ -8,9 +7,28 @@ const MyPosts = props => {
     <Post message={p.message} likeCount={p.likeCount} id={p.id} key={p.id} />
   ))
 
+  let newPostElement = React.createRef()
+
+  let onChange = () => {
+    let text = newPostElement.current.value
+    props.updateNewPost(text)
+    // props.dispatch(updateNewPostAC(text))
+  }
+
+  let onAddPost = () => {
+    props.addPost()
+    // props.dispatch(addPostAC())
+  }
+
   return (
     <div className={style.myPosts}>
-      <MessageSender {...props} />
+      <textarea
+        ref={newPostElement}
+        placeholder='write message'
+        onChange={onChange}
+        value={props.newPostText}
+      ></textarea>
+      <button onClick={onAddPost}>Add post</button>
       {postItem}
     </div>
   )

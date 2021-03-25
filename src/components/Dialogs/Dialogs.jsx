@@ -1,28 +1,26 @@
 import React from 'react'
-import { sendMessageAC, updateNewMessageAC } from '../../redux/state'
 import style from './Dialogs.module.css'
 import DialogsItem from './DialogsItem/DialogsItem'
 import MessageItem from './MessageItem.jsx/MessageItem'
 
 const Dialogs = props => {
-  let dialogsItem = props.dialogs.map(d => (
+  let dialogsItem = props.dialogsPage.dialogs.map(d => (
     <DialogsItem name={d.name} id={d.id} key={d.id} />
   ))
 
-  let messageItem = props.messages.map(m => (
+  let messageItem = props.dialogsPage.messages.map(m => (
     <MessageItem message={m.message} id={m.id} key={m.id} />
   ))
 
   let newMessageElement = React.createRef()
 
-  let onChange = (e) => {
+  let onChange = () => {
     let text = newMessageElement.current.value
-    // let text = e.target.value
-    props.dispatch(updateNewMessageAC(text))
+    props.updateNewMessage(text)
   }
 
   let sendMessage = () => {
-    props.dispatch(sendMessageAC())
+    props.sendMessage()
   }
 
   return (
@@ -33,7 +31,7 @@ const Dialogs = props => {
         {messageItem}
         <textarea
           ref={newMessageElement}
-          value={props.newMessageText}
+          value={props.dialogsPage.newMessageText}
           onChange={onChange}
         />
         <button onClick={sendMessage}>Send</button>

@@ -2,8 +2,8 @@ import React from 'react'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import style from './Profile.module.css'
 import ProfileMenu from './ProfileMenu/ProfileMenu'
-import MyPosts from './ProfileMenu/MyPosts/MyPosts'
 import { Route } from 'react-router-dom'
+import MyPostContainer from './ProfileMenu/MyPosts/MyPostContainer'
 
 const Profile = props => {
   return (
@@ -13,13 +13,7 @@ const Profile = props => {
 
       <Route
         path='/profile/posts'
-        render={() => (
-          <MyPosts
-            dispatch={props.dispatch}
-            posts={props.profilePage.posts}
-            newPostText={props.profilePage.newPostText}
-          />
-        )}
+        render={() => <MyPostContainer store={props.store} />}
       />
     </div>
   )
