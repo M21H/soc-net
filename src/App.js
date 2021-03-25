@@ -7,7 +7,6 @@ import Sidebar from './components/Sidebar/Sidebar'
 import TopSearchForm from './components/TopSearchForm/TopSearchForm'
 
 function App(props) {
-  
   return (
     <div className='app'>
       <Sidebar />
@@ -19,15 +18,21 @@ function App(props) {
             path='/profile'
             render={() => (
               <Profile
+                dispatch={props.dispatch}
                 profilePage={props.state.profilePage}
-                addPost={props.addPost}
-                updateNewPostChange={props.updateNewPostChange}
               />
             )}
           />
           <Route
             path='/dialogs'
-            render={() => <Dialogs dialogsPage={props.state.dialogsPage} />}
+            render={() => (
+              <Dialogs
+                dispatch={props.dispatch}
+                dialogs={props.state.dialogsPage.dialogs}
+                messages={props.state.dialogsPage.messages}
+                newMessageText={props.state.dialogsPage.newMessageText}
+              />
+            )}
           />
         </Switch>
       </div>

@@ -10,11 +10,7 @@ const MyPosts = props => {
 
   return (
     <div className={style.myPosts}>
-      <MessageSender
-        addPost={props.addPost}
-        newPostText={props.newPostText}
-        updateNewPostChange={props.updateNewPostChange}
-      />
+      <MessageSender {...props} />
       {postItem}
     </div>
   )
