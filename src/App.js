@@ -6,7 +6,7 @@ import Profile from './components/Profile/Profile'
 import Sidebar from './components/Sidebar/Sidebar'
 import TopSearchForm from './components/TopSearchForm/TopSearchForm'
 
-function App(props) {
+function App() {
   return (
     <div className='app'>
       <Sidebar />
@@ -14,14 +14,8 @@ function App(props) {
         <TopSearchForm />
         <Header />
         <Switch>
-          <Route
-            path='/profile'
-            render={() => <Profile store={props.store} />}
-          />
-          <Route
-            path='/dialogs'
-            render={() => <DialogsContainer store={props.store} />}
-          />
+          <Route path='/profile' render={() => <Profile />} />
+          <Route path='/dialogs' render={() => <DialogsContainer />} />
         </Switch>
       </div>
     </div>
