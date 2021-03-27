@@ -30,6 +30,7 @@ const Dialogs = props => {
       <div>
         {messageItem}
         <textarea
+          placeholder='write message'
           ref={newMessageElement}
           value={props.dialogsPage.newMessageText}
           onChange={onChange}
