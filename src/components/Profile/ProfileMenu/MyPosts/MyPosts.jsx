@@ -20,7 +20,7 @@ const MyPosts = props => {
 
   return (
     <div className={style.myPosts}>
-      <textarea
+      <textarea style={{outline: 'none', resize: 'none'}}
         ref={newPostElement}
         placeholder='write message'
         onChange={onChange}

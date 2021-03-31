@@ -5,6 +5,7 @@ import SidebarRow from './SidebarRow/SidebarRow'
 import MenuIcon from '@material-ui/icons/Menu'
 import PersonIcon from '@material-ui/icons/Person'
 import GroupIcon from '@material-ui/icons/Group'
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
@@ -12,14 +13,17 @@ const Sidebar = () => {
     <div className={style.sidebar}>
       <SidebarRow IconMenu={MenuIcon} />
 
-      <NavLink to='/profile' >
+      <NavLink to='/profile'>
         <SidebarRow Icon={PersonIcon} />
       </NavLink>
 
       <NavLink to='/dialogs'>
+        <SidebarRow Icon={QuestionAnswerIcon} />
+      </NavLink>
+
+      <NavLink to='/users'>
         <SidebarRow Icon={GroupIcon} />
       </NavLink>
-      
     </div>
   )
 }

@@ -5,6 +5,7 @@ import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile'
 import Sidebar from './components/Sidebar/Sidebar'
 import TopSearchForm from './components/TopSearchForm/TopSearchForm'
+import UsersContainer from './components/Users/UsersContainer'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Switch>
           <Route path='/profile' render={() => <Profile />} />
           <Route path='/dialogs' render={() => <DialogsContainer />} />
+          <Route path='/users' render={() => <UsersContainer />} />
         </Switch>
       </div>
     </div>
