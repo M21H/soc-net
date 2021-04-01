@@ -1,0 +1,7 @@
+.preloader {
+  display: grid;
+  place-items: center;
+  background-color: black;
+  opacity: 0.2;
+  height: 100vh;
+}
