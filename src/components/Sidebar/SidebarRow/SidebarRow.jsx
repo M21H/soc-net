@@ -14,7 +14,7 @@ const SidebarRow = ({ IconMenu, Icon }) => {
       )}
       {Icon && (
         <div
-          style={{ backgroundColor: 'transparent' }}
+          // style={{ backgroundColor: 'transparent' }}
           className={style.sidebarRow__item}
         >
           <Icon className={style.sidebarRow__icon} />
