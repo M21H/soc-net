@@ -36,9 +36,10 @@ export default class UsersC extends Component {
     return (
       <div className={style.users}>
         <div>
-          {pages.map(p => (
+          {pages.map((p, index) => (
             <span
-              className={this.props.currentPage === p && style.active}
+              key={`${p}_${index}`}
+              className={this.props.currentPage === p ? style.active : null}
               onClick={() => this.onPageChange(p)}
             >
               {`${p} `}
@@ -48,7 +49,7 @@ export default class UsersC extends Component {
         {this.props.users.map(u => (
           //---------------create User component--------------
           <div key={u.id}>
-            <Avatar src={u.photos.small && userImg} />
+            <Avatar src={u.photos.small != null ? u.photos.small : userImg}/>
             <div>{u.name}</div>
             <div>{u.status}</div>
             {u.followed ? (

@@ -12,6 +12,7 @@ let initialState = {
 }
 
 const usersReducer = (state = initialState, action) => {
+  debugger
   switch (action.type) {
     case SET_USERS:
       return {
