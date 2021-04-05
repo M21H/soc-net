@@ -1,10 +1,17 @@
 import { Box } from '@material-ui/core'
 import React from 'react'
-import style from './ProfileMenuItem.module.css'
 
 const ProfileMenuItem = ({ title, Icon }) => {
   return (
-    <div className={style.profileMenuItem}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        height: 70,
+        borderRight: '1px solid rgba(63, 66, 87, 0.1)',
+        padding: '0 40px',
+      }}
+    >
       <Box pr={1} color='rgba(63, 66, 87)'>
         {Icon && <Icon />}
       </Box>

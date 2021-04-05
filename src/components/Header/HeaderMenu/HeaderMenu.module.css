@@ -1,10 +1,15 @@
 .headerMenu {
   display: flex;
   list-style-type: none;
-  cursor: pointer;
+  
 }
 
 .headerMenu__item {
   font-weight: 500;
   margin-right: 30px;
+  cursor: pointer;
+}
+
+.headerMenu__item:hover {
+  color: #ef5a39;
 }

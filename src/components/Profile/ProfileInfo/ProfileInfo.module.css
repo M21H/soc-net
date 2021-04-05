@@ -1,4 +1,23 @@
-.profileInfo__bg > img {
-  width: 100%;
-  height: 350px;
+.profileInfo__bg {
+  position: relative;
+  background-image: url('https://olympus.crumina.net/wp-content/uploads/buddypress/members/1/cover-image/5c220b12b44cd-bp-cover-image.jpg');
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
+
+.profileInfo__photos {
+  position: absolute;
+  inset: 100px 270px;
+  /* width: 150px;
+  height: 150px; */
+}
+
+.profileInfo__fullName {
+  color: white;
+}
+
+
+
+

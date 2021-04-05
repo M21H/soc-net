@@ -10,11 +10,11 @@
   width: 100%;
   background-color: rgba(63, 66, 87);
 }
-
 .topSearchForm__input {
   width: 27%;
   background-color: #494c62;
   padding: 0 20px;
+  cursor: text;
 }
 
 .topSearchForm__input > input {
