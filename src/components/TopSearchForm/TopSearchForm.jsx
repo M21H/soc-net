@@ -6,7 +6,6 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
 import { NavLink } from 'react-router-dom'
 
 const TopSearchForm = props => {
-  debugger
   return (
     <div className={style.topSearchForm}>
       <div className={style.topSearchForm__input}>
