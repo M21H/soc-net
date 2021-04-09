@@ -6,8 +6,8 @@ import {
   setCurrentPage,
   setUsersCount,
   toggleIsFetching,
+  setFollowingInProgress,
 } from '../../redux/users_reducer'
-import * as axios from 'axios'
 import React, { Component } from 'react'
 import Users from './Users'
 import Preloader from '../../common/Preloader/Preloader'
@@ -26,17 +26,8 @@ class UsersContainer extends Component {
   onPageChange = pageNumber => {
     this.props.setCurrentPage(pageNumber)
     this.props.toggleIsFetching(true)
-    axios
-    .get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-      {
-        withCredentials: true,
-      }
-    )
-
-    // userAPI.getUsers(pageNumber, this.props.pageSize)
-    .then(response => {
-      this.props.setUsers(response.data.items)
+    userAPI.getPage(pageNumber, this.props.pageSize).then(data => {
+      this.props.setUsers(data.items)
       this.props.toggleIsFetching(false)
     })
   }
@@ -55,6 +46,9 @@ class UsersContainer extends Component {
             unfollow={this.props.unfollow}
             currentPage={this.props.currentPage}
             onPageChange={this.onPageChange}
+            
+            followingInProgress={this.props.followingInProgress}
+            setFollowingInProgress={this.props.setFollowingInProgress}
           />
         )}
       </>
@@ -69,6 +63,7 @@ const mapStateToProps = state => {
     pageSize: state.usersPage.pageSize,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
   }
 }
 
@@ -102,4 +97,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setUsersCount,
   toggleIsFetching,
+  setFollowingInProgress,
 })(UsersContainer)
