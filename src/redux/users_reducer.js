@@ -1,3 +1,5 @@
+import { userAPI } from '../api/api'
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -69,12 +71,12 @@ const usersReducer = (state = initialState, action) => {
   }
 }
 
-export const follow = userId => ({
+export const followSuccess = userId => ({
   type: FOLLOW,
   userId,
 })
 
-export const unfollow = userId => ({
+export const unfollowSuccess = userId => ({
   type: UNFOLLOW,
   userId,
 })
@@ -104,5 +106,50 @@ export const setFollowingInProgress = (followingInProgress, userId) => ({
   followingInProgress,
   userId,
 })
+
+export const getUsers = (currentPage, pageSize) => {
+  return dispatch => {
+    dispatch(toggleIsFetching(true))
+    userAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(toggleIsFetching(false))
+      dispatch(setUsers(data.items))
+      dispatch(setUsersCount(data.totalCount))
+    })
+  }
+}
+
+export const getPage = (pageNumber, pageSize) => {
+  return dispatch => {
+    dispatch(setCurrentPage(pageNumber))
+    userAPI.getPage(pageNumber, pageSize).then(response => {
+      dispatch(setUsers(response.items))
+    })
+    dispatch(toggleIsFetching(false))
+  }
+}
+
+export const follow = userId => {
+  return dispatch => {
+    dispatch(setFollowingInProgress(true, userId))
+    userAPI.follow(userId).then(response => {
+      if (response.data.resultCode === 0) {
+        dispatch(followSuccess(userId))
+      }
+      dispatch(setFollowingInProgress(false, userId))
+    })
+  }
+}
+
+export const unfollow = userId => {
+  return dispatch => {
+    dispatch(setFollowingInProgress(true, userId))
+    userAPI.unfollow(userId).then(response => {
+      if (response.data.resultCode === 0) {
+        dispatch(unfollowSuccess(userId))
+      }
+      dispatch(setFollowingInProgress(false, userId))
+    })
+  }
+}
 
 export default usersReducer
