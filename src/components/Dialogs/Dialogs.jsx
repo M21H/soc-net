@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router'
 import style from './Dialogs.module.css'
 import DialogsItem from './DialogsItem/DialogsItem'
 import MessageItem from './MessageItem.jsx/MessageItem'
@@ -12,16 +13,16 @@ const Dialogs = props => {
     <MessageItem message={m.message} id={m.id} key={m.id} />
   ))
 
-  let newMessageElement = React.createRef()
-
-  let onChange = () => {
-    let text = newMessageElement.current.value
+  let onChange = e => {
+    let text = e.target.value
     props.updateNewMessage(text)
   }
 
   let sendMessage = () => {
     props.sendMessage()
   }
+
+  if (!props.isAuth) return <Redirect to={'/login'} />
 
   return (
     <div className={style.dialogs}>
@@ -31,7 +32,6 @@ const Dialogs = props => {
         {messageItem}
         <textarea
           placeholder='write message'
-          ref={newMessageElement}
           value={props.dialogsPage.newMessageText}
           onChange={onChange}
         />

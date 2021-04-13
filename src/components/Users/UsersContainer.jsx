@@ -3,6 +3,8 @@ import { follow, unfollow, getUsers, getPage } from '../../redux/users_reducer'
 import React, { Component } from 'react'
 import Users from './Users'
 import Preloader from '../../common/Preloader/Preloader'
+import { compose } from 'redux'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 class UsersContainer extends Component {
   componentDidMount() {
@@ -46,32 +48,12 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     follow: userId => {
-//       dispatch(followAC(userId))
-//     },
-//     unfollow: userId => {
-//       dispatch(unfollowAC(userId))
-//     },
-//     setUsers: users => {
-//       dispatch(setUsersAC(users))
-//     },
-//     setCurrentPage: pageNumber => {
-//       dispatch(setCurrentPageAC(pageNumber))
-//     },
-//     setUsersCount: totalCount => {
-//       dispatch(setUsersCountAC(totalCount))
-//     },
-//     toggleIsFetching: isFetching => {
-//       dispatch(toggleIsFetchingAC(isFetching))
-//     },
-//   }
-// }
-
-export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  getUsers,
-  getPage,
-})(UsersContainer)
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, {
+    follow,
+    unfollow,
+    getUsers,
+    getPage,
+  })
+)(UsersContainer)

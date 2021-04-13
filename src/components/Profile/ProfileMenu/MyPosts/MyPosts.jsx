@@ -7,10 +7,8 @@ const MyPosts = props => {
     <Post message={p.message} likeCount={p.likeCount} id={p.id} key={p.id} />
   ))
 
-  let newPostElement = React.createRef()
-
-  let onChange = () => {
-    let text = newPostElement.current.value
+  let onChange = e => {
+    let text = e.target.value
     props.updateNewPost(text)
   }
 
@@ -21,7 +19,6 @@ const MyPosts = props => {
   return (
     <div className={style.myPosts}>
       <textarea style={{outline: 'none', resize: 'none'}}
-        ref={newPostElement}
         placeholder='write message'
         onChange={onChange}
         value={props.newPostText}
