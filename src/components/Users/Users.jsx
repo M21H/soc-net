@@ -2,8 +2,16 @@ import React from 'react'
 import style from './Users.module.css'
 import User from './User/User'
 
-const Users = props => {
-  const pagesCount = Math.ceil(props.usersCount / props.pageSize)
+const Users = ({
+  usersCount,
+  pageSize,
+  currentPage,
+  onPageChange,
+  users,
+  ...props
+}) => {
+  
+  const pagesCount = Math.ceil(usersCount / pageSize)
   const pages = []
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
@@ -15,14 +23,14 @@ const Users = props => {
         {pages.map((p, index) => (
           <span
             key={`${p}_${index}`}
-            className={props.currentPage === p ? style.active : null}
-            onClick={() => props.onPageChange(p)}
+            className={currentPage === p ? style.active : null}
+            onClick={() => onPageChange(p)}
           >
             {`${p} `}
           </span>
         ))}
       </div>
-      {props.users.map(u => (
+      {users.map(u => (
         <User
           {...u}
           id={u.id}

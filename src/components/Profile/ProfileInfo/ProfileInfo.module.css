@@ -1,5 +1,4 @@
-.profileInfo__bg {
-  position: relative;
+.profileInfo {
   background-image: url('https://olympus.crumina.net/wp-content/uploads/buddypress/members/1/cover-image/5c220b12b44cd-bp-cover-image.jpg');
   height: 300px;
   background-repeat: no-repeat;
@@ -7,16 +6,27 @@
   background-size: cover;
 }
 
-.profileInfo__photos {
-  position: absolute;
-  inset: 100px 270px;
-  /* width: 150px;
-  height: 150px; */
+.container {
+  width: 70%;
+  margin: 0 auto;
 }
 
-.profileInfo__fullName {
+.profileInfo__about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 250px;
+}
+
+.profileInfo__fullname {
+  background-color: blue;
+  margin-left: 50px;
+  font-size: 24px;
+  font-weight: bold; 
   color: white;
 }
+
 
 
 

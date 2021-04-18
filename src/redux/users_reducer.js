@@ -1,4 +1,4 @@
-import { userAPI } from '../api/api'
+import { followAPI, usersAPI } from '../api/api'
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -110,7 +110,7 @@ export const setFollowingInProgress = (followingInProgress, userId) => ({
 export const getUsers = (currentPage, pageSize) => {
   return dispatch => {
     dispatch(toggleIsFetching(true))
-    userAPI.getUsers(currentPage, pageSize).then(data => {
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
       dispatch(toggleIsFetching(false))
       dispatch(setUsers(data.items))
       dispatch(setUsersCount(data.totalCount))
@@ -121,7 +121,7 @@ export const getUsers = (currentPage, pageSize) => {
 export const getPage = (pageNumber, pageSize) => {
   return dispatch => {
     dispatch(setCurrentPage(pageNumber))
-    userAPI.getPage(pageNumber, pageSize).then(response => {
+    usersAPI.getPage(pageNumber, pageSize).then(response => {
       dispatch(setUsers(response.items))
     })
     dispatch(toggleIsFetching(false))
@@ -131,7 +131,7 @@ export const getPage = (pageNumber, pageSize) => {
 export const follow = userId => {
   return dispatch => {
     dispatch(setFollowingInProgress(true, userId))
-    userAPI.follow(userId).then(response => {
+    followAPI.follow(userId).then(response => {
       if (response.data.resultCode === 0) {
         dispatch(followSuccess(userId))
       }
@@ -143,7 +143,7 @@ export const follow = userId => {
 export const unfollow = userId => {
   return dispatch => {
     dispatch(setFollowingInProgress(true, userId))
-    userAPI.unfollow(userId).then(response => {
+    followAPI.unfollow(userId).then(response => {
       if (response.data.resultCode === 0) {
         dispatch(unfollowSuccess(userId))
       }

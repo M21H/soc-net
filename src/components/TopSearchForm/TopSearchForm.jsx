@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
 import { NavLink } from 'react-router-dom'
 
-const TopSearchForm = props => {
+const TopSearchForm = ({ isAuth, login }) => {
   return (
     <div className={style.topSearchForm}>
       <div className={style.topSearchForm__input}>
@@ -13,12 +13,12 @@ const TopSearchForm = props => {
         <SearchIcon style={{ fontSize: 'xx-large', color: '#888da8' }} />
       </div>
 
-      {props.isAuth ? (
+      {isAuth ? (
         <div
           className={style.topSearchForm__login}
           style={{ fontWeight: 'bold' }}
         >
-          {props.login}
+          {login}
         </div>
       ) : (
         <NavLink to='/login'>

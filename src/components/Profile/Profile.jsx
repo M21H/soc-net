@@ -5,10 +5,14 @@ import ProfileMenu from './ProfileMenu/ProfileMenu'
 import { Route, Switch } from 'react-router-dom'
 import MyPostContainer from './ProfileMenu/MyPosts/MyPostContainer'
 
-const Profile = props => {
+const Profile = ({ profile, userStatus, updateUserStatus }) => {
   return (
     <div className={style.profile}>
-      <ProfileInfo profile={props.profile} />
+      <ProfileInfo
+        profile={profile}
+        userStatus={userStatus}
+        updateUserStatus={updateUserStatus}
+      />
       <ProfileMenu />
       <Switch>
         <Route path='/profile/posts' render={() => <MyPostContainer />} />

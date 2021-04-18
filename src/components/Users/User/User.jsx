@@ -4,28 +4,35 @@ import userImg from '../../../assets/img/user.png'
 import { Avatar } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 
-const User = props => {
+const User = ({
+  id,
+  photos,
+  name,
+  status,
+  followed,
+  followingInProgress,
+  unfollow,
+  follow,
+}) => {
   return (
     <div className={style.user}>
-      <NavLink to={'/profile/' + props.id}>
-        <Avatar
-          src={props.photos.small != null ? props.photos.small : userImg}
-        />
+      <NavLink to={`/profile/${id}`}>
+        <Avatar src={photos.small != null ? photos.small : userImg} />
       </NavLink>
 
-      <div>{props.name}</div>
-      <div>{props.status}</div>
-      {props.followed ? (
+      <div>{name}</div>
+      <div>{status}</div>
+      {followed ? (
         <button
-          disabled={props.followingInProgress.some(id => id === props.id)}
-          onClick={() => props.unfollow(props.id)}
+          disabled={followingInProgress.some(userId => userId === id)}
+          onClick={() => unfollow(id)}
         >
           Unfollow
         </button>
       ) : (
         <button
-          disabled={props.followingInProgress.some(id => id === props.id)}
-          onClick={() => props.follow(props.id)}
+          disabled={followingInProgress.some(userId => userId === id)}
+          onClick={() => follow(id)}
         >
           Follow
         </button>

@@ -2,20 +2,35 @@ import { Avatar } from '@material-ui/core'
 import React from 'react'
 import Preloader from '../../../common/Preloader/Preloader'
 import style from './ProfileInfo.module.css'
+import ProfileStatus from './ProfileStatus/ProfileStatus'
 
-const ProfileInfo = props => {
-  if (!props.profile) {
+const ProfileInfo = ({ profile, userStatus, updateUserStatus }) => {
+  if (!profile) {
     return <Preloader />
   }
   return (
     <div className={style.profileInfo}>
-      <div className={style.profileInfo__bg}>
-        <Avatar
-          src={props.profile.photos.large}
-          className={style.profileInfo__photos}
-          style={{ width: '150px', height: '150px' }}
-        />
-        <div style={{color: 'white'}}>
+      <div className={style.container}>
+        <div className={style.profileInfo__about}>
+          <div className={style.profileInfo__avatar}>
+            <Avatar
+              src={profile.photos.large} //
+              className={style.profileInfo__photos}
+              style={{ width: '150px', height: '150px' }}
+            />
+          </div>
+
+          <div className={style.profileInfo__fullname}>
+            <p>{profile.fullName}</p>
+            <ProfileStatus
+              userStatus={userStatus}
+              updateUserStatus={updateUserStatus}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* <div style={{color: 'white'}}>
           <div className={style.profileInfo__aboutMe}>
             {props.profile.aboutMe}
           </div>
@@ -38,8 +53,7 @@ const ProfileInfo = props => {
           <div className={style.profileInfo__fullName}>
             {props.profile.fullName}
           </div>
-        </div>
-      </div>
+        </div> */}
     </div>
   )
 }
