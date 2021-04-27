@@ -1,21 +1,21 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { Textarea } from '../../common/FormsControls/FormsControls'
+import { maxLenght, required } from '../../utils/validators/validators'
 import style from './Dialogs.module.css'
 import DialogsItem from './DialogsItem/DialogsItem'
 import MessageItem from './MessageItem.jsx/MessageItem'
 
-const Dialogs = ({ dialogsPage, updateNewMessage, sendMessage }) => {
-  let dialogsItem = dialogsPage.dialogs.map(d => (
-    <DialogsItem name={d.name} id={d.id} key={d.id} />
+const Dialogs = ({ dialogsPage, sendMessage }) => {
+  let dialogsItem = dialogsPage.dialogs.map(dialog => (
+    <DialogsItem key={dialog.id} {...dialog} />
   ))
 
-  let messageItem = dialogsPage.messages.map(m => (
-    <MessageItem message={m.message} id={m.id} key={m.id} />
+  let messageItem = dialogsPage.messages.map(message => (
+    <MessageItem key={message.id} {...message} />
   ))
 
   let addNewMessage = value => {
-    // alert(value.newMessageText)
-    // console.log(value.newMessageText)
     sendMessage(value.newMessageText)
   }
 
@@ -25,17 +25,20 @@ const Dialogs = ({ dialogsPage, updateNewMessage, sendMessage }) => {
 
       <div>
         {messageItem}
-        <AddMessageFormRedux onSubmit={addNewMessage} />
+        <AddMessageForm onSubmit={addNewMessage} />
       </div>
     </div>
   )
 }
 
-const AddMessageForm = ({ hendleSubmit }) => {
+const maxLenght100 = maxLenght(50)
+
+let AddMessageForm = ({ handleSubmit }) => {
   return (
-    <form onSubmit={hendleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Field
-        component={'textarea'}
+        validate={[required, maxLenght100]}
+        component={Textarea}
         name={'newMessageText'}
         placeholder='write message'
       />
@@ -44,8 +47,6 @@ const AddMessageForm = ({ hendleSubmit }) => {
   )
 }
 
-const AddMessageFormRedux = reduxForm({ form: 'dialogAddMessageForm' })(
-  AddMessageForm
-)
+AddMessageForm = reduxForm({ form: 'dialogAddMessageForm' })(AddMessageForm)
 
 export default Dialogs
