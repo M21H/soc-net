@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import TopSearchForm from './TopSearchForm'
 import { getAuthUserData } from '../../redux/auth_reducer'
+import { logout } from '../../redux/auth_reducer'
 
 class TopSearchFormContainer extends React.Component {
   componentDidMount() {
@@ -20,6 +21,6 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getAuthUserData })(
+export default connect(mapStateToProps, { getAuthUserData, logout })(
   TopSearchFormContainer
 )

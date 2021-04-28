@@ -17,7 +17,6 @@ class ProfileContainer extends Component {
       userId = 15326
       //15326
     }
-
     this.props.getUserProfile(userId)
     this.props.getUserStatus(userId)
   }
