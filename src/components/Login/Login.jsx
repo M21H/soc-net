@@ -23,7 +23,7 @@ const Login = ({ login, isAuth }) => {
   )
 }
 
-let LoginForm = ({ handleSubmit }) => {
+let LoginForm = ({ handleSubmit, error }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -44,10 +44,13 @@ let LoginForm = ({ handleSubmit }) => {
           validate={[required]}
         />
       </div>
-      <div>
+      <div style={{ display: 'flex' }}>
         <Field type='checkbox' name={'rememberMe'} component={Input} />
         <div>remember me</div>
       </div>
+
+      {error && <div style={{ color: 'red' }}>{error}</div>}
+
       <div>
         <button>Login</button>
       </div>
