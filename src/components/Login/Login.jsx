@@ -33,6 +33,7 @@ let LoginForm = ({ handleSubmit, error }) => {
           placeholder={'Email'}
           component={Input}
           validate={[required]}
+          autoComplete='on'
         />
       </div>
       <div>
@@ -42,6 +43,7 @@ let LoginForm = ({ handleSubmit, error }) => {
           placeholder={'Password'}
           component={Input}
           validate={[required]}
+          autoComplete='on'
         />
       </div>
       <div style={{ display: 'flex' }}>

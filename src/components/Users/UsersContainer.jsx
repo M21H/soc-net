@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import Users from './Users'
 import Preloader from '../../common/Preloader/Preloader'
 import { compose } from 'redux'
-import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 class UsersContainer extends Component {
   componentDidMount() {
@@ -49,7 +48,6 @@ const mapStateToProps = state => {
 }
 
 export default compose(
-  withAuthRedirect,
   connect(mapStateToProps, {
     follow,
     unfollow,

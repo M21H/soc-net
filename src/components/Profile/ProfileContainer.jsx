@@ -15,6 +15,9 @@ class ProfileContainer extends Component {
     let userId = this.props.match.params.userId
     if (!userId) {
       userId = this.props.authorizetUserId
+      if (!userId) {
+        this.props.history.push('/login')
+      }
     }
     this.props.getUserProfile(userId)
     this.props.getUserStatus(userId)
