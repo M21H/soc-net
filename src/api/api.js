@@ -13,10 +13,10 @@ export const authAPI = {
     return instance.get(`auth/me`)
   },
   login(email, password, rememberMe = false) {
-    return instance.post(`/auth/login`, { email, password, rememberMe })
+    return instance.post(`auth/login`, { email, password, rememberMe })
   },
   logout() {
-    return instance.delete(`/auth/login`)
+    return instance.delete(`auth/login`)
   },
 }
 
@@ -24,11 +24,6 @@ export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 10) {
     return instance
       .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then(response => response.data)
-  },
-  getPage(pageNumber = 1, pageSize = 10) {
-    return instance
-      .get(`users?page=${pageNumber}&count=${pageSize}`)
       .then(response => response.data)
   },
 }
