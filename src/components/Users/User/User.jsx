@@ -1,5 +1,4 @@
 import React from 'react'
-import style from './User.module.css'
 import userImg from '../../../assets/img/user.png'
 import { Avatar } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
@@ -15,7 +14,7 @@ const User = ({
   follow,
 }) => {
   return (
-    <div className={style.user}>
+    <div>
       <NavLink to={`/profile/${id}`}>
         <Avatar src={photos.small != null ? photos.small : userImg} />
       </NavLink>

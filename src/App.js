@@ -47,8 +47,6 @@ const mapStateToProps = state => ({
   initialized: state.app.initialized,
 })
 
-
-//withRouter not necessarily
 export default compose(
   withRouter,
   connect(mapStateToProps, { initializeApp })

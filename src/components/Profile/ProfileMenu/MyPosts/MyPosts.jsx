@@ -5,10 +5,8 @@ import { required, maxLenght } from '../../../../utils/validators/validators'
 import style from './MyPosts.module.css'
 import Post from './Post/Post'
 
-const MyPosts = ({ posts, addPost }) => {
-  let postItem = posts.map(post => (
-    <Post key={post.id} {...post} />
-  ))
+const MyPosts = React.memo(({ posts, addPost }) => {
+  let postItem = posts.map(post => <Post key={post.id} {...post} />)
 
   let onAddPost = values => {
     addPost(values.newPostText)
@@ -20,7 +18,7 @@ const MyPosts = ({ posts, addPost }) => {
       {postItem}
     </>
   )
-}
+})
 
 const maxLenght10 = maxLenght(10)
 

@@ -107,34 +107,40 @@ export const setFollowingInProgress = (followingInProgress, userId) => ({
   userId,
 })
 
-export const requestUsers = (currentPage, pageSize) => dispatch => {
+export const requestUsers = (currentPage, pageSize) => async dispatch => {
   dispatch(toggleIsFetching(true))
   dispatch(setCurrentPage(currentPage))
-  usersAPI.getUsers(currentPage, pageSize).then(data => {
-    dispatch(toggleIsFetching(false))
-    dispatch(setUsers(data.items))
-    dispatch(setUsersCount(data.totalCount))
-  })
+  const data = await usersAPI.getUsers(currentPage, pageSize)
+  dispatch(toggleIsFetching(false))
+  dispatch(setUsers(data.items))
+  dispatch(setUsersCount(data.totalCount))
 }
 
-export const follow = userId => dispatch => {
+const followUnfollow = async (dispatch, userId, apiMethod, action) => {
   dispatch(setFollowingInProgress(true, userId))
-  followAPI.follow(userId).then(response => {
-    if (response.data.resultCode === 0) {
-      dispatch(followSuccess(userId))
-    }
-    dispatch(setFollowingInProgress(false, userId))
-  })
+  const response = await apiMethod(userId)
+  if (response.data.resultCode === 0) {
+    dispatch(action(userId))
+  }
+  dispatch(setFollowingInProgress(false, userId))
 }
 
-export const unfollow = userId => dispatch => {
-  dispatch(setFollowingInProgress(true, userId))
-  followAPI.unfollow(userId).then(response => {
-    if (response.data.resultCode === 0) {
-      dispatch(unfollowSuccess(userId))
-    }
-    dispatch(setFollowingInProgress(false, userId))
-  })
+export const follow = userId => async dispatch => {
+  followUnfollow(
+    dispatch,
+    userId,
+    followAPI.follow.bind(followAPI),
+    followSuccess
+  )
+}
+
+export const unfollow = userId => async dispatch => {
+  followUnfollow(
+    dispatch,
+    userId,
+    followAPI.unfollow.bind(followAPI),
+    unfollowSuccess
+  )
 }
 
 export default usersReducer

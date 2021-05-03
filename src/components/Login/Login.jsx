@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { Input } from '../../common/FormsControls/FormsControls'
+import { reduxForm } from 'redux-form'
+import { createField, Input } from '../../common/FormsControls/FormsControls'
 import { required } from '../../utils/validators/validators'
 import { login } from '../../redux/auth_reducer'
 import { Redirect } from 'react-router'
@@ -26,28 +26,11 @@ const Login = ({ login, isAuth }) => {
 let LoginForm = ({ handleSubmit, error }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          type='text'
-          name={'email'}
-          placeholder={'Email'}
-          component={Input}
-          validate={[required]}
-          autoComplete='on'
-        />
-      </div>
-      <div>
-        <Field
-          type='password'
-          name={'password'}
-          placeholder={'Password'}
-          component={Input}
-          validate={[required]}
-          autoComplete='on'
-        />
-      </div>
+      {createField('Email', 'email', [required], Input)}
+      {createField('Password', 'password', [required], Input, { type: 'password' })}
+
       <div style={{ display: 'flex' }}>
-        <Field type='checkbox' name={'rememberMe'} component={Input} />
+        {createField(null, 'rememberMe', [], Input, { type: 'checkbox' })}
         <div>remember me</div>
       </div>
 
