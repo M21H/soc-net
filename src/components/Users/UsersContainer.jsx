@@ -37,6 +37,7 @@ class UsersContainer extends Component {
             currentPage={this.props.currentPage}
             onPageChange={this.onPageChange}
             followingInProgress={this.props.followingInProgress}
+            
           />
         )}
       </>

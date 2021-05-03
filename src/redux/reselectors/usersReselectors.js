@@ -1,10 +1,3 @@
-// users: state.usersPage.users,
-// usersCount: state.usersPage.usersCount,
-// pageSize: state.usersPage.pageSize,
-// currentPage: state.usersPage.currentPage,
-// isFetching: state.usersPage.isFetching,
-// followingInProgress: state.usersPage.followingInProgress,
-
 export const getUsers = state => {
   return state.usersPage.users
 }

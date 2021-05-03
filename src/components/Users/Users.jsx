@@ -14,7 +14,6 @@ const Users = props => {
       {props.users.map(user => (
         <User
           {...user}
-          id={user.id}
           key={user.id}
           follow={props.follow}
           unfollow={props.unfollow}
