@@ -1,4 +1,4 @@
-.error > :first-child{
+.error > :first-child {
   border: 2px solid red;
 }
 

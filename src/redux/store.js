@@ -8,20 +8,17 @@ import { reducer as formReducer } from 'redux-form'
 import appReducer from './app_reducer'
 
 let reducers = combineReducers({
-  profilePage: profileReducer,
-  dialogsPage: dialogsReducer,
-  usersPage: usersReducer,
-  auth: authReducer,
-  app: appReducer,
-  form: formReducer,
+	profilePage: profileReducer,
+	dialogsPage: dialogsReducer,
+	usersPage: usersReducer,
+	auth: authReducer,
+	app: appReducer,
+	form: formReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const store = createStore(
-  reducers,
-  composeEnhancers(applyMiddleware(thunkMiddleware))
-)
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)))
 
-window.__store__ = store
+window.store = store
 
 export default store

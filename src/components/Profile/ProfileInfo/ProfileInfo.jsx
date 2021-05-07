@@ -5,32 +5,30 @@ import style from './ProfileInfo.module.css'
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks'
 
 const ProfileInfo = ({ profile, userStatus, updateUserStatus }) => {
-  if (!profile) {
-    return <Preloader />
-  }
-  return (
-    <div className={style.profileInfo}>
-      <div className={style.container}>
-        <div className={style.profileInfo__about}>
-          <div className={style.profileInfo__avatar}>
-            <Avatar
-              src={profile.photos.large} //
-              className={style.profileInfo__photos}
-              style={{ width: '150px', height: '150px' }}
-            />
-          </div>
+	if (!profile) {
+		return <Preloader />
+	}
+  
+	return (
+		<div className={style.profileInfo}>
+			<div className={style.container}>
+				<div className={style.profileInfo__about}>
+					<div className={style.profileInfo__avatar}>
+						<Avatar
+							src={profile.photos.large} //
+							className={style.profileInfo__photos}
+							style={{ width: '150px', height: '150px' }}
+						/>
+					</div>
 
-          <div className={style.profileInfo__fullname}>
-            <p>{profile.fullName}</p>
-            <ProfileStatusWithHooks
-              userStatus={userStatus} 
-              updateUserStatus={updateUserStatus}
-            />
-          </div>
-        </div>
-      </div>
+					<div className={style.profileInfo__fullname}>
+						<p>{profile.fullName}</p>
+						<ProfileStatusWithHooks userStatus={userStatus} updateUserStatus={updateUserStatus} />
+					</div>
+				</div>
+			</div>
 
-      {/* <div style={{color: 'white'}}>
+			{/* <div style={{color: 'white'}}>
           <div className={style.profileInfo__aboutMe}>
             {props.profile.aboutMe}
           </div>
@@ -54,8 +52,8 @@ const ProfileInfo = ({ profile, userStatus, updateUserStatus }) => {
             {props.profile.fullName}
           </div>
         </div> */}
-    </div>
-  )
+		</div>
+	)
 }
 
 export default ProfileInfo

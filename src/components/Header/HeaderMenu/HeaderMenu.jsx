@@ -1,5 +1,5 @@
-import React from 'react'
-import style from './HeaderMenu.module.css'
+import React from "react";
+import style from "./HeaderMenu.module.css";
 
 const HeaderMenu = ({ title, onClick }) => {
   const headerMenuItems = title.map((title, index) => (
@@ -10,9 +10,9 @@ const HeaderMenu = ({ title, onClick }) => {
     >
       {title}
     </li>
-  ))
+  ));
 
-  return <ul className={style.headerMenu}>{headerMenuItems}</ul>
-}
+  return <ul className={style.headerMenu}>{headerMenuItems}</ul>;
+};
 
-export default HeaderMenu
+export default HeaderMenu;

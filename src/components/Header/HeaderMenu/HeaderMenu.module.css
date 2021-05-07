@@ -1,7 +1,6 @@
 .headerMenu {
   display: flex;
   list-style-type: none;
-  
 }
 
 .headerMenu__item {
