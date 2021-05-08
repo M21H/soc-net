@@ -1,4 +1,4 @@
-.profileInfo {
+.aboutProfile {
   background-image: url("https://olympus.crumina.net/wp-content/uploads/buddypress/members/1/cover-image/5c220b12b44cd-bp-cover-image.jpg");
   height: 300px;
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
   margin: 0 auto;
 }
 
-.profileInfo__about {
+.aboutProfile__about {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@
   top: 250px;
 }
 
-.profileInfo__fullname {
+.aboutProfile__fullname {
   background-color: blue;
   margin-left: 50px;
   font-size: 24px;

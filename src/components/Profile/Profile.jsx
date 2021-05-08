@@ -2,7 +2,7 @@ import React from 'react'
 import AboutProfile from './AboutProfile/AboutProfile'
 import ProfileMenu from './ProfileMenu/ProfileMenu'
 import { Route, Switch } from 'react-router-dom'
-import MyPostContainer from './ProfileMenu/MyPosts/MyPostContainer'
+import PostContainer from './ProfileMenu/Posts/PostContainer'
 
 const Profile = ({ profile, userStatus, updateUserStatus, savePhoto, isOwner }) => {
 	return (
@@ -16,7 +16,7 @@ const Profile = ({ profile, userStatus, updateUserStatus, savePhoto, isOwner }) 
 			/>
 			<ProfileMenu />
 			<Switch>
-				<Route path='/profile/posts' render={() => <MyPostContainer />} />
+				<Route path='/profile/posts' render={() => <PostContainer />} />
 			</Switch>
 		</div>
 	)
