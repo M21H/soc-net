@@ -1,10 +1,10 @@
 import { Avatar } from '@material-ui/core'
 import React from 'react'
 import Preloader from '../../../common/Preloader/Preloader'
-import style from './ProfileInfo.module.css'
+import style from './AboutProfile.module.css'
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks'
 
-const ProfileInfo = ({ profile, userStatus, updateUserStatus, isOwner, savePhoto }) => {
+const AboutProfile = ({ profile, userStatus, updateUserStatus, isOwner, savePhoto }) => {
 	if (!profile) {
 		return <Preloader />
 	}
@@ -63,4 +63,4 @@ const ProfileInfo = ({ profile, userStatus, updateUserStatus, isOwner, savePhoto
 	)
 }
 
-export default ProfileInfo
+export default AboutProfile

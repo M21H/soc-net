@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileInfo from './ProfileInfo/ProfileInfo'
+import AboutProfile from './AboutProfile/AboutProfile'
 import ProfileMenu from './ProfileMenu/ProfileMenu'
 import { Route, Switch } from 'react-router-dom'
 import MyPostContainer from './ProfileMenu/MyPosts/MyPostContainer'
@@ -7,7 +7,7 @@ import MyPostContainer from './ProfileMenu/MyPosts/MyPostContainer'
 const Profile = ({ profile, userStatus, updateUserStatus, savePhoto, isOwner }) => {
 	return (
 		<div>
-			<ProfileInfo
+			<AboutProfile
 				profile={profile}
 				userStatus={userStatus}
 				updateUserStatus={updateUserStatus}
