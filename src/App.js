@@ -11,6 +11,7 @@ import Sidebar from './components/Sidebar/Sidebar'
 import TopSearchFormContainer from './components/TopSearchForm/TopSearchFormContainer'
 import { initializeApp } from './redux/app_reducer'
 
+//hello
 // import ProfileContainer from './components/Profile/ProfileContainer'
 // import DialogsContainer from './components/Dialogs/DialosContainer'
 // import UsersContainer from './components/Users/UsersContainer'
