@@ -1,23 +1,21 @@
 import React from 'react'
+import styles from './Profile.module.css'
 import AboutProfile from './AboutProfile/AboutProfile'
-import ProfileMenu from './ProfileMenu/ProfileMenu'
-import { Route, Switch } from 'react-router-dom'
-import PostContainer from './ProfileMenu/Posts/PostContainer'
+import PostContainer from './Posts/PostContainer'
 
-const Profile = ({ profile, userStatus, updateUserStatus, savePhoto, isOwner }) => {
+const Profile = props => {
 	return (
 		<div>
 			<AboutProfile
-				profile={profile}
-				userStatus={userStatus}
-				updateUserStatus={updateUserStatus}
-				savePhoto={savePhoto}
-				isOwner={isOwner}
+				profile={props.profile}
+				userStatus={props.userStatus}
+				updateUserStatus={props.updateUserStatus}
+				savePhoto={props.savePhoto}
+				isOwner={props.isOwner}
 			/>
-			<ProfileMenu />
-			<Switch>
-				<Route path='/profile/posts' render={() => <PostContainer />} />
-			</Switch>
+			<div className={styles.profile__posts}>
+				<PostContainer />
+			</div>
 		</div>
 	)
 }

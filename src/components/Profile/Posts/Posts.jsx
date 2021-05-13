@@ -1,9 +1,9 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { Textarea } from '../../../../common/FormsControls/FormsControls'
-import { required, maxLenght } from '../../../../utils/validators/validators'
 import style from './Posts.module.css'
 import Post from './Post/Post'
+import { Textarea } from '../../../common/FormsControls/FormsControls'
+import { maxLenght, required } from '../../../utils/validators/validators'
 
 const Posts = React.memo(({ posts, addPost }) => {
 	return (
