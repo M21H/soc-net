@@ -17,11 +17,23 @@ const Status = ({ userStatus, updateUserStatus }) => {
 		updateUserStatus(status)
 	}
 
+	const styles = {
+		input: {
+			backgroundColor: 'inherit',
+			color: 'white',
+			fontSize: '24px',
+			outline: 0,
+			border: 'none',
+			fontWeight: 'bold'
+		}
+	}
+
 	return (
 		<div>
 			{editMode ? (
 				<div>
 					<input
+						style={styles.input}
 						onChange={e => setStatus(e.currentTarget.value)}
 						onBlur={deactiveEditMode}
 						autoFocus={true}
