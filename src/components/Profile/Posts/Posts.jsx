@@ -7,12 +7,12 @@ import { maxLenght, required } from '../../../utils/validators/validators'
 
 const Posts = React.memo(({ posts, addPost }) => {
 	return (
-		<>
+		<div>
 			<AddNewPostForm onSubmit={values => addPost(values.newPostText)} />
 			{posts.map(post => (
 				<Post key={post.id} {...post} />
 			))}
-		</>
+		</div>
 	)
 })
 

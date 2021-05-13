@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfileStatusWithHooks = ({ userStatus, updateUserStatus }) => {
+const Status = ({ userStatus, updateUserStatus }) => {
 	const [editMode, setEditMode] = React.useState(false)
 	const [status, setStatus] = React.useState(userStatus)
 
@@ -37,4 +37,4 @@ const ProfileStatusWithHooks = ({ userStatus, updateUserStatus }) => {
 	)
 }
 
-export default ProfileStatusWithHooks
+export default Status
