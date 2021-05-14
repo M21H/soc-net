@@ -21,7 +21,7 @@ const Header = () => {
         <div className={style.header__menu}>
           <HeaderMenu
             onClick={(title) => console.log(title)}
-            title={["Home", "Community", "Pages", "Blog", "Events", "Shop"]}
+            titles={["Home", "Community", "Pages", "Blog", "Events", "Shop"]}
           />
         </div>
       </div>

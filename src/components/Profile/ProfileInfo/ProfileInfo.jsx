@@ -1,66 +1,52 @@
-import { Avatar } from '@material-ui/core'
 import React from 'react'
-import Preloader from '../../../common/Preloader/Preloader'
-import style from './ProfileInfo.module.css'
-import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks'
+import styles from './ProfileInfo.module.css'
+import InfoIcon from '@material-ui/icons/Info'
 
-const ProfileInfo = ({ profile, userStatus, updateUserStatus, isOwner, savePhoto }) => {
-	if (!profile) {
-		return <Preloader />
-	}
-
-	const onMainPhotoSelected = e => {
-		if (e.target.files.length) {
-			savePhoto(e.target.files[0])
-		}
-	}
-
+export const ProfileInfo = ({
+	profile: { fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts },
+	isOwner,
+	goToEditMode,
+}) => {
 	return (
-		<div className={style.profileInfo}>
-			<div className={style.container}>
-				<div className={style.profileInfo__about}>
-					<div className={style.profileInfo__avatar}>
-						<Avatar
-							src={profile.photos.large}
-							className={style.profileInfo__photos}
-							style={{ width: '150px', height: '150px' }}
-						/>
-						{isOwner && <input type='file' onChange={onMainPhotoSelected} />}
-					</div>
-
-					<div className={style.profileInfo__fullname}>
-						<p>{profile.fullName}</p>
-						<ProfileStatusWithHooks userStatus={userStatus} updateUserStatus={updateUserStatus} />
-					</div>
-				</div>
+		<div className={styles.profileInfo}>
+			<div className={styles.profileInfo__title}>
+				<InfoIcon className={styles.profileInfo__icon} />
+				<p className={styles.profileInfo__text}>Profile info</p>
+				{isOwner && <button onClick={goToEditMode}>edit</button>}
 			</div>
 
-			{/* <div style={{color: 'white'}}>
-          <div className={style.profileInfo__aboutMe}>
-            {props.profile.aboutMe}
-          </div>
-          <div className={style.profileInfo__contacts}>
-            {props.profile.contacts.facebook}
-            {props.profile.contacts.website}
-            {props.profile.contacts.vk}
-            {props.profile.contacts.twitter}
-            {props.profile.contacts.instagram}
-            {props.profile.contacts.youtube}
-            {props.profile.contacts.github}
-            {props.profile.contacts.mainLink}
-          </div>
-          <div className={style.profileInfo__lookingForAJob}>
-            {props.profile.lookingForAJob}
-          </div>
-          <div className={style.profileInfo__lookingForAJobDescription}>
-            {props.profile.lookingForAJobDescription}
-          </div>
-          <div className={style.profileInfo__fullName}>
-            {props.profile.fullName}
-          </div>
-        </div> */}
+			<div className={styles.profileInfo__fullName}>
+				<b>Full name: </b>
+				{fullName}
+			</div>
+
+			<div className={styles.profileInfo__aboutMe}>
+				<b>About me:</b> {aboutMe ? aboutMe : <em>nothing</em>}
+			</div>
+
+			<div className={styles.profileInfo__lookingForAJob}>
+				<b>Looking for a job:</b> {lookingForAJob ? 'yes' : 'no'}
+				{lookingForAJob && (
+					<div>
+						<b>My skills: </b> {lookingForAJobDescription}
+					</div>
+				)}
+			</div>
+
+			<div className={styles.profileInfo__contacts}>
+				<b>Contacts: </b>
+				{Object.keys(contacts).map(key => {
+					return <Contact key={key} title={key} value={contacts[key]} />
+				})}
+			</div>
 		</div>
 	)
 }
 
-export default ProfileInfo
+const Contact = ({ title, value }) => {
+	return (
+		<p style={{ marginLeft: '20px' }}>
+			<b>{title}</b>: {value ? value : <em>nothing</em>}
+		</p>
+	)
+}

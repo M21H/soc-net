@@ -3,27 +3,23 @@ import { Field, reduxForm } from 'redux-form'
 import { Textarea } from '../../common/FormsControls/FormsControls'
 import { maxLenght, required } from '../../utils/validators/validators'
 import style from './Dialogs.module.css'
-import DialogsItem from './DialogsItem/DialogsItem'
+import DialogItem from './DialogItem/DialogItem'
 import MessageItem from './MessageItem.jsx/MessageItem'
 
 const Dialogs = ({ dialogsPage, sendMessage }) => {
-	let dialogsItem = dialogsPage.dialogs.map(dialog => <DialogsItem key={dialog.id} {...dialog} />)
-
-	let messageItem = dialogsPage.messages.map(message => (
-		<MessageItem key={message.id} {...message} />
-	))
-
-	let addNewMessage = value => {
-		sendMessage(value.newMessageText)
-	}
-
 	return (
 		<div className={style.dialogs}>
-			<div>{dialogsItem}</div>
+			<div>
+				{dialogsPage.dialogs.map(dialog => (
+					<DialogItem key={dialog.id} {...dialog} />
+				))}
+			</div>
 
 			<div>
-				{messageItem}
-				<AddMessageForm onSubmit={addNewMessage} />
+				{dialogsPage.messages.map(message => (
+					<MessageItem key={message.id} {...message} />
+				))}
+				<AddMessageForm onSubmit={value => sendMessage(value.newMessageText)} />
 			</div>
 		</div>
 	)

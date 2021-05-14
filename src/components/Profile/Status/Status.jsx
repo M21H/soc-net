@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfileStatusWithHooks = ({ userStatus, updateUserStatus }) => {
+const Status = ({ userStatus, updateUserStatus }) => {
 	const [editMode, setEditMode] = React.useState(false)
 	const [status, setStatus] = React.useState(userStatus)
 
@@ -17,11 +17,23 @@ const ProfileStatusWithHooks = ({ userStatus, updateUserStatus }) => {
 		updateUserStatus(status)
 	}
 
+	const styles = {
+		input: {
+			backgroundColor: 'inherit',
+			color: 'white',
+			fontSize: '24px',
+			outline: 0,
+			border: 'none',
+			fontWeight: 'bold'
+		}
+	}
+
 	return (
 		<div>
 			{editMode ? (
 				<div>
 					<input
+						style={styles.input}
 						onChange={e => setStatus(e.currentTarget.value)}
 						onBlur={deactiveEditMode}
 						autoFocus={true}
@@ -37,4 +49,4 @@ const ProfileStatusWithHooks = ({ userStatus, updateUserStatus }) => {
 	)
 }
 
-export default ProfileStatusWithHooks
+export default Status

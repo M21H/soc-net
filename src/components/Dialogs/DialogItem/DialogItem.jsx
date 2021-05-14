@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const DialogsItem = ({ name, id }) => {
+const DialogItem = ({ name, id }) => {
 	let path = `/dialogs/${id}`
 
 	return (
@@ -11,4 +11,4 @@ const DialogsItem = ({ name, id }) => {
 	)
 }
 
-export default DialogsItem
+export default DialogItem

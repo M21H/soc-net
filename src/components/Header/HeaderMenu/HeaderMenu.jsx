@@ -1,18 +1,18 @@
 import React from "react";
 import style from "./HeaderMenu.module.css";
 
-const HeaderMenu = ({ title, onClick }) => {
-  const headerMenuItems = title.map((title, index) => (
+const HeaderMenu = ({ titles, onClick }) => {
+  const headerMenu = titles.map((title, index) => (
     <li
       className={style.headerMenu__item}
       onClick={() => onClick(title)}
-      key={`${title}_${index}`}
+      key={`${title}-${index}`}
     >
       {title}
     </li>
   ));
 
-  return <ul className={style.headerMenu}>{headerMenuItems}</ul>;
+  return <ul className={style.headerMenu}>{headerMenu}</ul>;
 };
 
 export default HeaderMenu;
