@@ -5,7 +5,6 @@ const ADD_POST = 'ADD_POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_USER_STATUS = 'SET_USER_STATUS'
 const SEVE_PHOTO_SUCCESS = 'SEVE_PHOTO_SUCCESS'
-// const SEVE_PROFILE_SUCCESS = 'SEVE_PROFILE_SUCCESS'
 
 let initialState = {
 	posts: [
@@ -47,11 +46,6 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				profile: { ...state.profile, photos: action.photos },
 			}
-		// case SEVE_PROFILE_SUCCESS:
-		// 	return {
-		// 		...state,
-		// 		profile: action.profile,
-		// 	}
 		default:
 			return state
 	}
@@ -76,11 +70,6 @@ export const savePhotoSuccess = photos => ({
 	type: SEVE_PHOTO_SUCCESS,
 	photos,
 })
-
-// export const saveProfileSuccess = profile => ({
-// 	type: SEVE_PHOTO_SUCCESS,
-// 	profile,
-// })
 
 export const getUserProfile = userId => async dispatch => {
 	const response = await profileAPI.getProfile(userId)

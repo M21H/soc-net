@@ -11,11 +11,6 @@ import Sidebar from './components/Sidebar/Sidebar'
 import TopSearchFormContainer from './components/TopSearchForm/TopSearchFormContainer'
 import { initializeApp } from './redux/app_reducer'
 
-//hello
-// import ProfileContainer from './components/Profile/ProfileContainer'
-// import DialogsContainer from './components/Dialogs/DialosContainer'
-// import UsersContainer from './components/Users/UsersContainer'
-
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialosContainer'))
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
