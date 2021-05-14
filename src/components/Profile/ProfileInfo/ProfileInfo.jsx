@@ -2,10 +2,13 @@ import React from 'react'
 import styles from './ProfileInfo.module.css'
 import InfoIcon from '@material-ui/icons/Info'
 
-export const ProfileInfo = ({ profile, isOwner, goToEditMode }) => {
+export const ProfileInfo = ({
+	profile: { fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts },
+	isOwner,
+	goToEditMode,
+}) => {
 	return (
 		<div className={styles.profileInfo}>
-
 			<div className={styles.profileInfo__title}>
 				<InfoIcon className={styles.profileInfo__icon} />
 				<p className={styles.profileInfo__text}>Profile info</p>
@@ -13,27 +16,27 @@ export const ProfileInfo = ({ profile, isOwner, goToEditMode }) => {
 			</div>
 
 			<div className={styles.profileInfo__fullName}>
-				<b>Full name: </b>{profile.fullName}
+				<b>Full name: </b>
+				{fullName}
 			</div>
 
-
 			<div className={styles.profileInfo__aboutMe}>
-				<b>About me:</b> {profile.aboutMe ? profile.aboutMe : <em>nothing</em>}
+				<b>About me:</b> {aboutMe ? aboutMe : <em>nothing</em>}
 			</div>
 
 			<div className={styles.profileInfo__lookingForAJob}>
-				<b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}
-				{profile.lookingForAJob && (
+				<b>Looking for a job:</b> {lookingForAJob ? 'yes' : 'no'}
+				{lookingForAJob && (
 					<div>
-						<b>My skills: </b> {profile.lookingForAJobDescription}
+						<b>My skills: </b> {lookingForAJobDescription}
 					</div>
 				)}
 			</div>
 
 			<div className={styles.profileInfo__contacts}>
 				<b>Contacts: </b>
-				{Object.keys(profile.contacts).map(key => {
-					return <Contact key={key} title={key} value={profile.contacts[key]} />
+				{Object.keys(contacts).map(key => {
+					return <Contact key={key} title={key} value={contacts[key]} />
 				})}
 			</div>
 		</div>

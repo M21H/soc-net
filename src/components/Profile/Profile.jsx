@@ -5,9 +5,16 @@ import Status from './Status/Status'
 import { Avatar } from '@material-ui/core'
 import Preloader from '../../common/Preloader/Preloader'
 import { ProfileInfo } from './ProfileInfo/ProfileInfo'
-import { ProfileInfoForm } from './ProfileInfoForm/ProfileInfoForm'
+import ProfileInfoFormReduxForm from './ProfileInfoForm/ProfileInfoForm'
 
-export const Profile = ({ profile, userStatus, updateUserStatus, isOwner, savePhoto }) => {
+export const Profile = ({
+	profile,
+	userStatus,
+	updateUserStatus,
+	isOwner,
+	savePhoto,
+	saveProfile,
+}) => {
 	const [editMode, setEditMode] = React.useState(false)
 
 	if (!profile) {
@@ -18,6 +25,10 @@ export const Profile = ({ profile, userStatus, updateUserStatus, isOwner, savePh
 		if (e.target.files.length) {
 			savePhoto(e.target.files[0])
 		}
+	}
+
+	const onSubmit = formData => {
+		saveProfile(formData).then(() => setEditMode(false)) //чекаєм поки санка зарезолвиться успішно => виходим з режиму едітмод
 	}
 
 	return (
@@ -42,7 +53,11 @@ export const Profile = ({ profile, userStatus, updateUserStatus, isOwner, savePh
 			<div className={styles.profileData}>
 				<div className={styles.profileData__container}>
 					{editMode ? (
-						<ProfileInfoForm profile={profile} />
+						<ProfileInfoFormReduxForm
+							initialValues={profile}
+							profile={profile}
+							onSubmit={onSubmit}
+						/>
 					) : (
 						<ProfileInfo
 							profile={profile}
