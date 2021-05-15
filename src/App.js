@@ -1,7 +1,7 @@
 import React from 'react'
 import { Suspense } from 'react'
 import { connect } from 'react-redux'
-import { Route, Switch, withRouter } from 'react-router'
+import { Redirect, Route, Switch, withRouter } from 'react-router'
 import { compose } from 'redux'
 import './App.css'
 import Preloader from './common/Preloader/Preloader'
@@ -19,6 +19,7 @@ class App extends React.Component {
 	componentDidMount() {
 		this.props.initializeApp()
 	}
+
 	render() {
 		if (!this.props.initialized) {
 			return <Preloader />
@@ -30,14 +31,17 @@ class App extends React.Component {
 				<div className='app__main'>
 					<TopSearchFormContainer />
 					<Header />
-					<Switch>
-						<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Switch>
+							<Redirect exact from='/' to='/profile' />
 							<Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+							<Route path='/dialogs' render={() => <DialogsContainer />} />
 							<Route path='/dialogs' render={() => <DialogsContainer />} />
 							<Route path='/users' render={() => <UsersContainer />} />
 							<Route path='/login' component={Login} />
-						</Suspense>
-					</Switch>
+							<Route path='*' render={() => <div>404 NOT FOUND</div>} />
+						</Switch>
+					</Suspense>
 				</div>
 			</div>
 		)
