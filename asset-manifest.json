@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/soc-net/static/css/main.25fd505f.chunk.css",
-    "main.js": "/soc-net/static/js/main.5f04758a.chunk.js",
-    "main.js.map": "/soc-net/static/js/main.5f04758a.chunk.js.map",
+    "main.js": "/soc-net/static/js/main.8bd4dfdd.chunk.js",
+    "main.js.map": "/soc-net/static/js/main.8bd4dfdd.chunk.js.map",
     "runtime-main.js": "/soc-net/static/js/runtime-main.ae2cf93e.js",
     "runtime-main.js.map": "/soc-net/static/js/runtime-main.ae2cf93e.js.map",
     "static/js/2.72ddab62.chunk.js": "/soc-net/static/js/2.72ddab62.chunk.js",
@@ -32,6 +32,6 @@
     "static/js/runtime-main.ae2cf93e.js",
     "static/js/2.72ddab62.chunk.js",
     "static/css/main.25fd505f.chunk.css",
-    "static/js/main.5f04758a.chunk.js"
+    "static/js/main.8bd4dfdd.chunk.js"
   ]
 }
