@@ -34,7 +34,7 @@ class App extends React.Component {
 					<Suspense fallback={<div>Loading...</div>}>
 						<Switch>
 							<Redirect exact from='/' to='/profile' />
-							<Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+							<Route path='/profile/:userId?' render={() => <ProfileContainer pageTitle={'soc-net'} />} />
 							<Route path='/dialogs' render={() => <DialogsContainer />} />
 							<Route path='/dialogs' render={() => <DialogsContainer />} />
 							<Route path='/users' render={() => <UsersContainer />} />

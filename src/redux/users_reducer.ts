@@ -13,11 +13,11 @@ type InitialState = typeof initialState
 
 const initialState = {
 	users: [] as Array<UserType>,
-	totalItemsCount: 0,
+	totalUsersCount: 0,
 	pageSize: 10,
 	currentPage: 1,
 	isFetching: false,
-	followingInProgress: [] as Array<number>, //array of users id
+	toggleFollowingInProgress: [] as Array<number>, //array of users id
 }
 
 const usersReducer = (state = initialState, action: any): InitialState => {
@@ -49,7 +49,7 @@ const usersReducer = (state = initialState, action: any): InitialState => {
 		case SET_USERS_COUNT:
 			return {
 				...state,
-				totalItemsCount: action.totalCount,
+				totalUsersCount: action.totalCount,
 			}
 		case TOGGLE_IS_FETCHING:
 			return {
@@ -59,9 +59,9 @@ const usersReducer = (state = initialState, action: any): InitialState => {
 		case TOGGLE_IS_FOLLOWING_PROGRESS:
 			return {
 				...state,
-				followingInProgress: action.followingInProgress
-					? [...state.followingInProgress, action.userId]
-					: state.followingInProgress.filter(id => id !== action.userId),
+				toggleFollowingInProgress: action.isFollowing
+					? [...state.toggleFollowingInProgress, action.userId]
+					: state.toggleFollowingInProgress.filter(id => id !== action.userId),
 			}
 		default:
 			return state
@@ -121,17 +121,16 @@ const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingType => ({
 
 type SetFollowingInProgressType = {
 	type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
-	isFetching: boolean
+	isFollowing: boolean
 	userId: number
 }
-const setFollowingInProgress = (isFetching: boolean, userId: number): SetFollowingInProgressType => ({
+const setToggleFollowingInProgress = (isFollowing: boolean, userId: number): SetFollowingInProgressType => ({
 	type: TOGGLE_IS_FOLLOWING_PROGRESS,
-	isFetching,
+	isFollowing,
 	userId,
 })
 
-
-export const requestUsers = (currentPage: number, pageSize: number) => async (dispatch: any) => {
+export const getUsers = (currentPage: number, pageSize: number) => async (dispatch: any) => {
 	dispatch(toggleIsFetching(true))
 	dispatch(setCurrentPage(currentPage))
 	const data = await usersAPI.getUsers(currentPage, pageSize)
@@ -140,13 +139,13 @@ export const requestUsers = (currentPage: number, pageSize: number) => async (di
 	dispatch(setUsersCount(data.totalCount))
 }
 
-const followUnfollow = async (dispatch: any, userId: number, apiMethod: any) => {
-	dispatch(setFollowingInProgress(true, userId))
-	const response = await apiMethod(userId)
+const followUnfollow = async (dispatch: any, userId: number, apiFollowUnfollow: any) => {
+	dispatch(setToggleFollowingInProgress(true, userId))
+	const response = await apiFollowUnfollow(userId)
 	if (response.data.resultCode === 0) {
 		dispatch(toggleFollowSuccess(userId))
 	}
-	dispatch(setFollowingInProgress(false, userId))
+	dispatch(setToggleFollowingInProgress(false, userId))
 }
 
 export const follow = (userId: number) => async (dispatch: any) => {
