@@ -1,5 +1,3 @@
-import React from 'react'
-
 import MenuIcon from '@material-ui/icons/Menu'
 import PersonIcon from '@material-ui/icons/Person'
 import GroupIcon from '@material-ui/icons/Group'
