@@ -25,7 +25,7 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
 		case SET_CAPTCHA_URL:
 			return {
 				...state,
-				captchaUrl: action.payload,
+				captchaUrl: action.payload.captchaUrl,
 			}
 		default:
 			return state
@@ -80,7 +80,6 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 	}
 }
 
-// ! TO FIX: captchaUrl not visible in UI (img)
 export const getCaptchaUrl = () => async (dispatch: any) => {
 	const data = await securityAPI.getCaptchaUrl()
 	const captchaUrl = data.url

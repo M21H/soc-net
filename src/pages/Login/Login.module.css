@@ -1,0 +1,22 @@
+.formControl {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 140px);
+}
+
+.btn_login {
+  margin: 3px 0;
+  width: 300px;
+  height: 30px;
+  background-color: blue;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  outline: none;
+}
+
+.btn_login:hover {
+  cursor: pointer;
+}

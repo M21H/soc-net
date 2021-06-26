@@ -6,13 +6,13 @@ import { compose } from 'redux'
 import './App.css'
 import Preloader from './common/Preloader/Preloader'
 import Header from './components/Header/Header'
-import Login from './components/Login/Login'
 import Sidebar from './components/Sidebar/Sidebar'
 import TopSearchFormContainer from './components/TopSearchForm/TopSearchFormContainer'
+import { Login, NotFound } from './pages'
 import { initializeApp } from './redux/app_reducer'
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialosContainer'))
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
 
 class App extends React.Component {
@@ -34,12 +34,12 @@ class App extends React.Component {
 					<Suspense fallback={<div>Loading...</div>}>
 						<Switch>
 							<Redirect exact from='/' to='/profile' />
-							<Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-							<Route path='/dialogs' render={() => <DialogsContainer />} />
-							<Route path='/dialogs' render={() => <DialogsContainer />} />
-							<Route path='/users' render={() => <UsersContainer />} />
+							<Route path='/profile/:userId?' component={ProfileContainer} />
+							<Route path='/dialogs' component={DialogsContainer} />
+							<Route path='/dialogs' component={DialogsContainer} />
+							<Route path='/users' component={UsersContainer} />
 							<Route path='/login' component={Login} />
-							<Route path='*' render={() => <div>404 NOT FOUND</div>} />
+							<Route path='*' component={NotFound} />
 						</Switch>
 					</Suspense>
 				</div>

@@ -48,6 +48,7 @@ export function createField<FormKeysType extends string>(
 	return (
 		<>
 			<Field
+				className={styles.field}
 				type='text'
 				autoComplete='on'
 				name={name}
