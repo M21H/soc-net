@@ -59,37 +59,37 @@ export const setCaptchaUrl = (captchaUrl: string): SetCaptchaUrlActionType => ({
 
 
 export const getAuthUserData = () => async (dispatch: any) => {
-	let meData = await authAPI.me()
-	if (meData.resultCode === ResultCodeEnum.Success) {
-		let { id, login, email } = meData.data
+	const data = await authAPI.me()
+	if (data.resultCode === ResultCodeEnum.Success) {
+		let { id, login, email } = data.data
 		dispatch(setAuthUserData(id, login, email, true))
 	}
 }
 
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
-	let loginData = await authAPI.login(email, password, rememberMe, captcha)
-	if (loginData.resultCode === ResultCodeEnum.Success) {
+	const data = await authAPI.login(email, password, rememberMe, captcha)
+	if (data.resultCode === ResultCodeEnum.Success) {
 		dispatch(getAuthUserData())
 	} else {
-		if (loginData.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
+		if (data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
 			dispatch(getCaptchaUrl())
 		}
-		const message = loginData.messages.length !== 0 ? loginData.messages[0] : 'Some error'
+		const message = data.messages.length !== 0 ? data.messages[0] : 'Some error'
 		dispatch(stopSubmit('login', { _error: message }))
 	}
 }
 
-
+// ! TO FIX: captchaUrl not visible in UI (img)
 export const getCaptchaUrl = () => async (dispatch: any) => {
-	const response = await securityAPI.getCaptchaUrl()
-	const captchaUrl = response.data.url
+	const data = await securityAPI.getCaptchaUrl()
+	const captchaUrl = data.url
 	dispatch(setCaptchaUrl(captchaUrl))
 }
 
 export const logout = () => async (dispatch: any) => {
-	let response = await authAPI.logout()
-	if (response.data.resultCode === 0) {
+	const data = await authAPI.logout()
+	if (data.resultCode === ResultCodeEnum.Success) {
 		dispatch(setAuthUserData(null, null, null, false))
 	}
 }

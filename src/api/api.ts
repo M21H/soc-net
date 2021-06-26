@@ -11,13 +11,13 @@ const instance = axios.create({
 
 export const securityAPI = {
 	getCaptchaUrl() {
-		return instance.get('/security/get-captcha-url')
+		return instance.get('/security/get-captcha-url').then(({ data }) => data)
 	},
 }
 
 export enum ResultCodeEnum {
 	Success = 0,
-	Error = 1,
+	Error = 1
 }
 
 export enum ResultCodeForCaptcha {
@@ -45,7 +45,7 @@ export const authAPI = {
 			.then(res => res.data)
 	},
 	logout() {
-		return instance.delete(`auth/login`)
+		return instance.delete(`auth/login`).then(({ data }) => data)
 	},
 }
 
@@ -53,30 +53,30 @@ export const usersAPI = {
 	getUsers(currentPage = 1, pageSize = 10) {
 		return instance
 			.get(`users?page=${currentPage}&count=${pageSize}`)
-			.then(response => response.data)
+			.then(res => res.data)
 	},
 }
 
 export const followAPI = {
 	follow(userId: number) {
-		return instance.post(`follow/${userId}`)
+		return instance.post(`follow/${userId}`).then(({ data }) => data)
 	},
 	unfollow(userId: number) {
-		return instance.delete(`follow/${userId}`)
+		return instance.delete(`follow/${userId}`).then(({ data }) => data)
 	},
 }
 
 export const profileAPI = {
 	getProfile(userId: number) {
-		return instance.get(`profile/${userId}`).then(response => response.data)
+		return instance.get(`profile/${userId}`).then(({ data }) => data)
 	},
 
 	getStatus(userId: number) {
-		return instance.get(`profile/status/${userId}`)
+		return instance.get(`profile/status/${userId}`).then(({ data }) => data)
 	},
 
 	updateStatus(status: string) {
-		return instance.put(`profile/status`, { status })
+		return instance.put(`profile/status`, { status }).then(({ data }) => data)
 	},
 
 	savePhoto(photoFile: any) {
@@ -86,9 +86,9 @@ export const profileAPI = {
 			headers: {
 				'Content-Type': 'multipart/form-data',
 			},
-		})
+		}).then(({ data }) => data)
 	},
 	saveProfile(profile: ProfileType) {
-		return instance.put(`/profile`, profile)
+		return instance.put(`/profile`, profile).then(({ data }) => data)
 	},
 }

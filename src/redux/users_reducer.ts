@@ -1,5 +1,5 @@
 import { UserType } from './../type/types';
-import { followAPI, usersAPI } from '../api/api'
+import { followAPI, ResultCodeEnum, usersAPI } from '../api/api'
 import { AppStateType } from './store';
 import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from 'redux';
@@ -152,8 +152,8 @@ export const getUsers = (currentPage: number, pageSize: number): ThunkType => as
 
 const _followUnfollow = async (dispatch: DispatchType, userId: number, apiFollowUnfollow: any) => {
 	dispatch(setToggleFollowingInProgress(true, userId))
-	const response = await apiFollowUnfollow(userId)
-	if (response.data.resultCode === 0) {
+	const data = await apiFollowUnfollow(userId)
+	if (data.resultCode === ResultCodeEnum.Success) {
 		dispatch(toggleFollowSuccess(userId))
 	}
 	dispatch(setToggleFollowingInProgress(false, userId))

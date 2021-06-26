@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import style from './Posts.module.css'
 import Post from './Post/Post'
 import { Textarea } from '../../../common/FormsControls/FormsControls'
-import { maxLenght, required } from '../../../utils/validators/validators'
+import { maxLength, required } from '../../../utils/validators/validators'
 
 const Posts = React.memo(({ posts, addPost }) => {
 	return (
@@ -16,7 +16,7 @@ const Posts = React.memo(({ posts, addPost }) => {
 	)
 })
 
-const maxLenght10 = maxLenght(10)
+const maxLength10 = maxLength(10)
 
 let AddNewPostForm = ({ handleSubmit }) => {
 	return (
@@ -24,7 +24,7 @@ let AddNewPostForm = ({ handleSubmit }) => {
 			<Field
 				component={Textarea}
 				placeholder='write message'
-				validate={[required, maxLenght10]}
+				validate={[required, maxLength10]}
 				name={'newPostText'}
 			/>
 			<button>Add post</button>
