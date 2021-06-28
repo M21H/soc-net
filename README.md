@@ -1,4 +1,6 @@
 # This project posted on https://m21h.github.io/soc-net
+## Email: free@samuraijs.com
+## Password: free 
 
 # Getting Started with Create React App
 
