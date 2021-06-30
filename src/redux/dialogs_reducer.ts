@@ -1,6 +1,8 @@
-const SEND_MESSAGE = 'soc-net/dialogs/SEND_MESSAGE'
+import { InferActionsTypes } from "./store"
+
 
 export type InitialStateType = typeof initialState
+type ActionsType = InferActionsTypes<typeof actions>
 
 type DialogType = {
 	id: number
@@ -27,31 +29,23 @@ const initialState = {
 	] as Array<MessageType>,
 }
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
 	switch (action.type) {
-		case SEND_MESSAGE:
-			let newMessage = {
-				id: 4,
-				message: action.payload,
-			}
+		case 'DIALOGS:SEND_MESSAGE':
 			return {
 				...state,
-				messages: [...state.messages, newMessage],
+				messages: [...state.messages, { id: 4, message: action.newMessageText }],
 			}
 		default:
 			return state
 	}
 }
 
-export type SendMessageActionType = {
-	type: typeof SEND_MESSAGE,
-	payload: { newMessageText: string }
 
+export const actions = {
+	sendMessage: (newMessageText: string) => ({ type: 'DIALOGS:SEND_MESSAGE', newMessageText } as const)
 }
 
-export const sendMessage = (newMessageText: string): SendMessageActionType => ({
-	type: SEND_MESSAGE,
-	payload: { newMessageText },
-})
+
 
 export default dialogsReducer
