@@ -65,7 +65,6 @@ export const Profile = ({
 							goToEditMode={() => setEditMode(true)}
 						/>
 					)}
-
 					<PostContainer />
 				</div>
 			</div>
