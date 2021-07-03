@@ -2,7 +2,7 @@ import React from 'react'
 import { DIALOGS_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, USERS_ROUTE } from './const'
 
 const ProfileContainer = React.lazy(() => import('../components/Profile/ProfileContainer'))
-const DialogsContainer = React.lazy(() => import('../components/Dialogs/DialogsContainer'))
+const Dialogs = React.lazy(() => import('../components/Dialogs/Dialogs'))
 const UsersContainer = React.lazy(() => import('../components/Users/UsersContainer'))
 const Login = React.lazy(() => import('../pages/Login/Login'))
 
@@ -13,7 +13,7 @@ export const authRoutes = [
 	},
 	{
 		path: DIALOGS_ROUTE,
-		Component: DialogsContainer,
+		Component: Dialogs,
 	},
 ]
 

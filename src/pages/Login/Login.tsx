@@ -7,6 +7,7 @@ import { InjectedFormProps, reduxForm } from 'redux-form'
 import { createField, Input } from '../../common/FormsControls/FormsControls'
 import { AppStateType } from '../../redux/store'
 import { required } from '../../utils/validators/validators'
+import { PROFILE_ROUTE } from '../../routes/const'
 
 
 
@@ -33,7 +34,7 @@ const Login: React.FC<MapStatePropsType & MapDispatchPropsType> = ({ login, isAu
   const onSubmit = (formData: LoginFormValueType) => {
     login(formData.email, formData.password, formData.rememberMe, formData.captcha)
   }
-  return isAuth ? <Redirect to='/profile' /> : <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
+  return isAuth ? <Redirect to={PROFILE_ROUTE} /> : <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
 }
 
 type LoginFormOwnPropsType = {

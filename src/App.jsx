@@ -9,11 +9,13 @@ import TopSearchForm from './components/TopSearchForm/TopSearchForm'
 import { NotFound } from './pages'
 import { initializeApp } from './redux/app_reducer'
 import { useDispatch, useSelector } from 'react-redux'
-import { authRoutes, publicRoutes } from './routers/routes'
+import { authRoutes, publicRoutes } from './routes/routes'
+import { LOGIN_ROUTE, PROFILE_ROUTE } from './routes/const'
 
 export const App = () => {
 	const dispatch = useDispatch()
-	const initialized = useSelector(({ app }) => app.initialized)
+	const { initialized } = useSelector(({ app }) => app)
+	const { isAuth } = useSelector(({ auth }) => auth)
 
 	React.useEffect(() => {
 		dispatch(initializeApp())
@@ -31,8 +33,8 @@ export const App = () => {
 				<Header />
 				<Suspense fallback={<div>Loading...</div>}>
 					<Switch>
-						<Redirect exact from='/' to='/profile' />
-						{initialized &&
+						<Redirect exact from='/' to={PROFILE_ROUTE} />
+						{isAuth &&
 							authRoutes.map(({ path, Component }) => (
 								<Route key={path} path={path} component={Component} exact />
 							))}
@@ -40,6 +42,7 @@ export const App = () => {
 						{publicRoutes.map(({ path, Component }) => (
 							<Route key={path} path={path} component={Component} exact />
 						))}
+						<Redirect to={LOGIN_ROUTE} />
 						<Route path='*' component={NotFound} />
 					</Switch>
 				</Suspense>

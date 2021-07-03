@@ -100,7 +100,7 @@ export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch,
 		} else {
 			throw new Error("userId can't be null")
 		}
-		
+
 	} else {
 		// dispatch(stopSubmit('edit-profile', { contacts: { facebook: response.data.messages[0] } }))
 		dispatch(stopSubmit('edit-profile', { _error: data.messages[0] }))
