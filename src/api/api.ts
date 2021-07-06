@@ -9,7 +9,6 @@ export const instance = axios.create({
 	},
 })
 
-
 export type ResponseType<D = {}, RC = ResultCodeEnum> = {
 	data: D
 	messages: Array<string>

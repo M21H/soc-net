@@ -1,6 +1,7 @@
-import userImg from '../../../assets/img/user.png'
+import userImg from '../../assets/img/user.png'
 import { Avatar } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
+import { PROFILE_ROUTE } from '../../routes/const'
 
 const User = ({
 	id,
@@ -14,7 +15,7 @@ const User = ({
 }) => {
 	return (
 		<div>
-			<NavLink to={`/profile/${id}`}>
+			<NavLink to={`${PROFILE_ROUTE}/${id}`}>
 				<Avatar src={photos.small != null ? photos.small : userImg} />
 			</NavLink>
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { follow, unfollow, getUsers } from '../../redux/users_reducer'
+import { follow, unfollow, getUsers, FilterType } from '../../redux/users_reducer'
 import React from 'react'
 import Users from './Users'
 import Preloader from '../../common/Preloader/Preloader'
@@ -11,6 +11,7 @@ import {
 	getAllUsers,
 	getToggleFollowingInProgress,
 	getTotalUsersCount,
+	getUsersFilter,
 } from '../../redux/reselectors/usersReselectors'
 import { UserType } from '../../type/types'
 import { AppStateType } from '../../redux/store'
@@ -23,21 +24,29 @@ type MapStatePropsType = {
 	users: Array<UserType>
 	totalUsersCount: number
 	toggleFollowingInProgress: Array<number>
+	filter: FilterType
 }
 
 type MapDispatchPropsType = {
 	follow: (userId: number) => void
 	unfollow: (userId: number) => void
-	getUsers: (currentPage: number, pageSize: number) => void
+	getUsers: (currentPage: number, pageSize: number, filter: FilterType) => void
 }
 
 class UsersContainer extends React.Component<MapStatePropsType & MapDispatchPropsType> {
 	componentDidMount() {
-		this.props.getUsers(this.props.currentPage, this.props.pageSize)
+		const { currentPage, pageSize, filter } = this.props
+		this.props.getUsers(currentPage, pageSize, filter)
 	}
 
 	onPageChanged = (pageNumber: number) => {
-		this.props.getUsers(pageNumber, this.props.pageSize)
+		const { pageSize, filter } = this.props
+		this.props.getUsers(pageNumber, pageSize, filter)
+	}
+
+	onFilterChanged = (filter: FilterType) => {
+		const { pageSize } = this.props
+		this.props.getUsers(1, pageSize, filter)
 	}
 
 	render() {
@@ -54,6 +63,7 @@ class UsersContainer extends React.Component<MapStatePropsType & MapDispatchProp
 						unfollow={this.props.unfollow}
 						currentPage={this.props.currentPage}
 						onPageChanged={this.onPageChanged}
+						onFilterChanged={this.onFilterChanged}
 						toggleFollowingInProgress={this.props.toggleFollowingInProgress}
 					/>
 				)}
@@ -70,6 +80,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 		currentPage: getCurrentPage(state),
 		isFetching: getIsFetching(state),
 		toggleFollowingInProgress: getToggleFollowingInProgress(state),
+		filter: getUsersFilter(state)
 	}
 }
 

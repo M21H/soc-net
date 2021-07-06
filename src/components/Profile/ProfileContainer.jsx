@@ -65,5 +65,5 @@ export default compose(
 		savePhoto,
 		saveProfile,
 	}),
-	withRouter,
+	withRouter
 )(ProfileContainer)
