@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/components/Dialogs/Dialogs.module.css"],"names":[],"mappings":"AAAA,wBACE,YACF","file":"5.6f52661d.chunk.css","sourcesContent":[".dialogs {\n  display: flex;\n}\n"]}
