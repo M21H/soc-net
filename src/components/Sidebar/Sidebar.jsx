@@ -4,6 +4,7 @@ import GroupIcon from '@material-ui/icons/Group'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 import { NavLink } from 'react-router-dom'
 import { Box } from '@material-ui/core'
+import { DIALOGS_ROUTE, PROFILE_ROUTE, USERS_ROUTE } from '../../routes/const'
 
 const Sidebar = () => {
 	const styles = {
@@ -33,18 +34,18 @@ const Sidebar = () => {
 			</Box>
 
 			<Box style={styles.box}>
-				<NavLink to='/profile'>
+				<NavLink to={PROFILE_ROUTE}>
 					<PersonIcon style={styles.icon} />
 				</NavLink>
 			</Box>
 
-			<NavLink to='/dialogs'>
+			<NavLink to={DIALOGS_ROUTE}>
 				<Box style={styles.box}>
 					<QuestionAnswerIcon style={styles.icon} />
 				</Box>
 			</NavLink>
 
-			<NavLink to='/users'>
+			<NavLink to={USERS_ROUTE}>
 				<Box style={styles.box}>
 					<GroupIcon style={styles.icon} />
 				</Box>

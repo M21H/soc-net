@@ -11,11 +11,12 @@ import { initializeApp } from './redux/app_reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { authRoutes, publicRoutes } from './routes/routes'
 import { LOGIN_ROUTE, PROFILE_ROUTE } from './routes/const'
+import { AppStateType } from './redux/store'
 
 export const App = () => {
 	const dispatch = useDispatch()
-	const { initialized } = useSelector(({ app }) => app)
-	const { isAuth } = useSelector(({ auth }) => auth)
+	const { initialized } = useSelector(({ app }: AppStateType) => app)
+	const { isAuth } = useSelector(({ auth }: AppStateType) => auth)
 
 	React.useEffect(() => {
 		dispatch(initializeApp())

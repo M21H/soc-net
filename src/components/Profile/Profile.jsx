@@ -38,7 +38,11 @@ export const Profile = ({
 				<div className={styles.profile__container}>
 					<div className={styles.profile__about}>
 						<div>
-							<Avatar className={styles.profile__avatar} src={profile.photos.large} />
+							<Avatar
+								className={styles.profile__avatar}
+								style={{ border: '3px solid white', width: '150px', height: '150px' }}
+								src={profile.photos.large}
+							/>
 							<div>{isOwner && <input type='file' onChange={onMainPhotoSelected} />}</div>
 						</div>
 

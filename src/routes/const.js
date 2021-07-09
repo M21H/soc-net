@@ -1,3 +1,4 @@
+export const MAIN_ROUTE = '/'
 export const PROFILE_ROUTE = '/profile'
 export const DIALOGS_ROUTE = '/dialogs'
 export const USERS_ROUTE = '/users'

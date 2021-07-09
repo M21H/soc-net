@@ -1,2 +1,5 @@
 export { default as Login } from './Login/Login'
 export { default as NotFound } from './NotFound/NotFound'
+export { default as ProfileContainer } from './ProfileContainer'
+export { default as Dialogs } from './Dialogs'
+export { default as Users } from './Users'

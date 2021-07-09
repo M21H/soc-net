@@ -6,11 +6,12 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../redux/auth_reducer'
+import { LOGIN_ROUTE } from '../../routes/const'
+import { AppStateType } from '../../redux/store'
 
-
-const TopSearchForm = () => {
+const TopSearchForm: React.FC = () => {
 	const dispatch = useDispatch()
-	const { login, isAuth } = useSelector(({ auth }) => auth)
+	const { login, isAuth } = useSelector(({ auth }: AppStateType) => auth)
 
 	const onLogout = () => {
 		dispatch(logout())
@@ -32,7 +33,7 @@ const TopSearchForm = () => {
 					<div>{login}</div>
 				</div>
 			) : (
-				<NavLink to='/login'>
+				<NavLink to={LOGIN_ROUTE}>
 					<div className={style.topSearchForm__login}>
 						<PowerSettingsNewIcon style={{ fontSize: 'xx-large' }} />
 					</div>
