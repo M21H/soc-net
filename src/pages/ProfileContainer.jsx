@@ -1,24 +1,21 @@
 import React from 'react'
-import { Profile } from '../components/Profile/Profile'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import {
-	getUserProfile,
-	getUserStatus,
-	updateUserStatus,
-	savePhoto,
-	saveProfile,
-} from '../redux/profile_reducer'
 import { withRouter } from 'react-router'
+import { getUserProfile, getUserStatus, updateUserStatus, savePhoto, saveProfile } from '../redux/profile_reducer'
+import { Profile } from '../components/Profile/Profile'
+import { PROFILE_ROUTE } from '../routes/const'
 
 class ProfileContainer extends React.Component {
 	refreshProfile() {
-		let userId = this.props.match.params.userId
+		let { userId } = this.props.match.params
 		if (!userId) {
 			userId = this.props.authorizedUserId
 			if (!userId) {
-				this.props.history.push('/login')
+				this.props.history.push(`${PROFILE_ROUTE}`)
 			}
+		} else if (Number(userId) === this.props.authorizedUserId) {
+			this.props.history.push(`${PROFILE_ROUTE}`)
 		}
 		this.props.getUserProfile(userId)
 		this.props.getUserStatus(userId)

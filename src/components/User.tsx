@@ -1,8 +1,8 @@
-import userImg from '../assets/img/user.png'
 import { Avatar } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
-import { PROFILE_ROUTE } from '../routes/const'
 import { useDispatch, useSelector } from 'react-redux'
+import { PROFILE_ROUTE } from '../routes/const'
+import userImg from '../assets/img/user.png'
 import { follow, unfollow } from '../redux/users_reducer'
 import { getToggleFollowingInProgress } from '../redux/reselectors/usersReselectors'
 import { UserType } from '../type/types'
@@ -29,7 +29,7 @@ const User: React.FC<UserType> = ({ id, photos, name, status, followed }) => {
 			<div>{status}</div>
 			{followed ? (
 				<button
-					disabled={togFolInProg.some(userId => userId === id)} //хоч одна id з масива === User id  => true
+					disabled={togFolInProg.some(userId => userId === id)} // хоч одна id з масива === User id  => true
 					onClick={onUnFollow}>
 					Unfollow
 				</button>

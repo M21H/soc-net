@@ -1,8 +1,8 @@
+import { useDispatch, useSelector } from 'react-redux'
 import style from '../components/Dialogs/Dialogs.module.css'
 import DialogItem from '../components/Dialogs/DialogItem'
 import MessageItem from '../components/Dialogs/MessageItem'
 import { actions } from '../redux/dialogs_reducer'
-import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../redux/store'
 import AddMessageForm from '../components/Dialogs/AddMessageForm'
 
@@ -11,7 +11,6 @@ export type NewMessageFormValueType = {
 }
 
 const Dialogs = () => {
-
 	const dispatch = useDispatch()
 	const { dialogs, messages } = useSelector(({ dialogsPage }: AppStateType) => dialogsPage)
 
@@ -38,4 +37,3 @@ const Dialogs = () => {
 }
 
 export default Dialogs
-

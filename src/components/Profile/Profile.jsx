@@ -1,20 +1,13 @@
 import React from 'react'
+import { Avatar } from '@material-ui/core'
 import styles from './Profile.module.css'
 import PostContainer from './Posts/PostContainer'
 import Status from './Status/Status'
-import { Avatar } from '@material-ui/core'
 import Preloader from '../../common/Preloader/Preloader'
 import { ProfileInfo } from './ProfileInfo/ProfileInfo'
 import ProfileInfoFormReduxForm from './ProfileInfoForm/ProfileInfoForm'
 
-export const Profile = ({
-	profile,
-	userStatus,
-	updateUserStatus,
-	isOwner,
-	savePhoto,
-	saveProfile,
-}) => {
+export const Profile = ({ profile, userStatus, updateUserStatus, isOwner, savePhoto, saveProfile }) => {
 	const [editMode, setEditMode] = React.useState(false)
 
 	if (!profile) {
@@ -28,7 +21,7 @@ export const Profile = ({
 	}
 
 	const onSubmit = formData => {
-		saveProfile(formData).then(() => setEditMode(false)) //чекаєм поки санка зарезолвиться успішно => виходим з режиму едітмод
+		saveProfile(formData).then(() => setEditMode(false)) // чекаєм поки санка зарезолвиться успішно => виходим з режиму едітмод
 	}
 
 	return (
@@ -57,17 +50,9 @@ export const Profile = ({
 			<div className={styles.profileData}>
 				<div className={styles.profileData__container}>
 					{editMode ? (
-						<ProfileInfoFormReduxForm
-							initialValues={profile}
-							profile={profile}
-							onSubmit={onSubmit}
-						/>
+						<ProfileInfoFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit} />
 					) : (
-						<ProfileInfo
-							profile={profile}
-							isOwner={isOwner}
-							goToEditMode={() => setEditMode(true)}
-						/>
+						<ProfileInfo profile={profile} isOwner={isOwner} goToEditMode={() => setEditMode(true)} />
 					)}
 					<PostContainer />
 				</div>

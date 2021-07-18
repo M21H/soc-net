@@ -21,12 +21,7 @@ const maxLength10 = maxLength(10)
 let AddNewPostForm = ({ handleSubmit }) => {
 	return (
 		<form className={style.myPosts} onSubmit={handleSubmit}>
-			<Field
-				component={Textarea}
-				placeholder='write message'
-				validate={[required, maxLength10]}
-				name={'newPostText'}
-			/>
+			<Field component={Textarea} placeholder='write message' validate={[required, maxLength10]} name='newPostText' />
 			<button>Add post</button>
 		</form>
 	)

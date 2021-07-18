@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from './ProfileInfoForm.module.css'
 import InfoIcon from '@material-ui/icons/Info'
-import { createField, Input, Textarea } from '../../../common/FormsControls/FormsControls'
 import { reduxForm } from 'redux-form'
+import styles from './ProfileInfoForm.module.css'
+import { createField, Input, Textarea } from '../../../common/FormsControls/FormsControls'
 
 const ProfileInfoForm = ({ handleSubmit, profile: { contacts }, error }) => {
 	return (
@@ -40,7 +40,7 @@ const ProfileInfoForm = ({ handleSubmit, profile: { contacts }, error }) => {
 					return (
 						<div key={key}>
 							<b>
-								{key}: {createField(key, 'contacts.' + key, [], Input)}
+								{key}: {createField(key, `contacts.${key}`, [], Input)}
 							</b>
 						</div>
 					)

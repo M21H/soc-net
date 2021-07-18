@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from './ProfileInfo.module.css'
 import InfoIcon from '@material-ui/icons/Info'
+import styles from './ProfileInfo.module.css'
 
 export const ProfileInfo = ({
 	profile: { fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts },
@@ -21,7 +21,7 @@ export const ProfileInfo = ({
 			</div>
 
 			<div className={styles.profileInfo__aboutMe}>
-				<b>About me:</b> {aboutMe ? aboutMe : <em>nothing</em>}
+				<b>About me:</b> {aboutMe || <em>nothing</em>}
 			</div>
 
 			<div className={styles.profileInfo__lookingForAJob}>
@@ -46,7 +46,7 @@ export const ProfileInfo = ({
 const Contact = ({ title, value }) => {
 	return (
 		<p style={{ marginLeft: '20px' }}>
-			<b>{title}</b>: {value ? value : <em>nothing</em>}
+			<b>{title}</b>: {value || <em>nothing</em>}
 		</p>
 	)
 }

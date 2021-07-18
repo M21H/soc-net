@@ -24,8 +24,8 @@ const Status = ({ userStatus, updateUserStatus }) => {
 			fontSize: '24px',
 			outline: 0,
 			border: 'none',
-			fontWeight: 'bold'
-		}
+			fontWeight: 'bold',
+		},
 	}
 
 	return (
@@ -36,7 +36,7 @@ const Status = ({ userStatus, updateUserStatus }) => {
 						style={styles.input}
 						onChange={e => setStatus(e.currentTarget.value)}
 						onBlur={deactiveEditMode}
-						autoFocus={true}
+						autoFocus
 						value={status}
 					/>
 				</div>

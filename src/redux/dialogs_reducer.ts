@@ -1,5 +1,4 @@
-import { InferActionsTypes } from "./store"
-
+import { InferActionsTypes } from './store'
 
 export type InitialStateType = typeof initialState
 type ActionsType = InferActionsTypes<typeof actions>
@@ -41,11 +40,8 @@ const dialogsReducer = (state = initialState, action: ActionsType): InitialState
 	}
 }
 
-
 export const actions = {
-	sendMessage: (newMessageText: string) => ({ type: 'DIALOGS:SEND_MESSAGE', newMessageText } as const)
+	sendMessage: (newMessageText: string) => ({ type: 'DIALOGS:SEND_MESSAGE', newMessageText } as const),
 }
-
-
 
 export default dialogsReducer

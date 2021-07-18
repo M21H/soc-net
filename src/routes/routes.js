@@ -8,7 +8,7 @@ const Login = React.lazy(() => import('../pages/Login/Login'))
 
 export const authRoutes = [
 	{
-		path: PROFILE_ROUTE + '/:userId?',
+		path: `${PROFILE_ROUTE}/:userId?`,
 		Component: ProfileContainer,
 	},
 	{

@@ -1,8 +1,10 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
+import queryString from 'querystring'
 import User from '../components/User'
 import Paginator from '../common/Paginator/Paginator'
 import { UsersSearchForm } from '../components/UsersSearchForm'
-import { useDispatch, useSelector } from 'react-redux'
 import {
 	getAllUsers,
 	getCurrentPage,
@@ -12,11 +14,9 @@ import {
 } from '../redux/reselectors/usersReselectors'
 import Preloader from '../common/Preloader/Preloader'
 import { FilterType, getUsers } from '../redux/users_reducer'
-import { useHistory } from 'react-router'
-import queryString from 'querystring'
 
 type PropsType = {}
-type QueryParamsType = { term?: string, page?: string, friend?: string }
+type QueryParamsType = { term?: string; page?: string; friend?: string }
 
 const Users: React.FC<PropsType> = () => {
 	const users = useSelector(getAllUsers)
@@ -29,14 +29,18 @@ const Users: React.FC<PropsType> = () => {
 	const history = useHistory()
 
 	React.useEffect(() => {
-		const parsed = queryString.parse(history.location.search.substring(1)) as QueryParamsType //remove first no-needed symbol, then parsing
+		const parsed = queryString.parse(history.location.search.substring(1)) as QueryParamsType // remove first no-needed symbol, then parsing
 
 		let actualPage = currentPage
 		let actualFilter = filter
 
-		if (!!parsed.page) actualPage = Number(parsed.page)
-		if (!!parsed.term) actualFilter = { ...actualFilter, term: parsed.term as string }
-		if (!!parsed.friend) actualFilter = { ...actualFilter, friend: parsed.friend === 'null' ? null : parsed.friend === 'true' ? true : false }
+		if (parsed.page) actualPage = Number(parsed.page)
+		if (parsed.term) actualFilter = { ...actualFilter, term: parsed.term as string }
+		if (parsed.friend)
+			actualFilter = {
+				...actualFilter,
+				friend: parsed.friend === 'null' ? null : parsed.friend === 'true',
+			}
 
 		dispatch(getUsers(actualPage, pageSize, actualFilter))
 	}, [])
@@ -44,13 +48,13 @@ const Users: React.FC<PropsType> = () => {
 	React.useEffect(() => {
 		const query: QueryParamsType = {}
 
-		if (!!filter.term) query.term = filter.term
+		if (filter.term) query.term = filter.term
 		if (filter.friend !== null) query.friend = String(filter.friend)
 		if (currentPage !== 1) query.page = String(currentPage)
 
 		history.push({
 			pathname: '/users',
-			search: queryString.stringify(query)
+			search: queryString.stringify(query),
 		})
 	}, [filter, currentPage])
 
@@ -69,11 +73,7 @@ const Users: React.FC<PropsType> = () => {
 			) : (
 				<div>
 					<UsersSearchForm onFilterChanged={onFilterChanged} />
-					<Paginator
-						pageSize={pageSize}
-						currentPage={currentPage}
-						onPageChanged={onPageChanged}
-					/>
+					<Paginator pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged} />
 					{users.map(user => (
 						<User key={user.id} {...user} />
 					))}

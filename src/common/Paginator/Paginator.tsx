@@ -1,7 +1,7 @@
 import React from 'react'
-import style from './Paginator.module.css'
 import cn from 'classnames'
 import { useSelector } from 'react-redux'
+import style from './Paginator.module.css'
 import { getTotalUsersCount } from '../../redux/reselectors/usersReselectors'
 
 type PropsType = {

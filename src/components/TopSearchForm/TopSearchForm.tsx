@@ -1,10 +1,10 @@
 import React from 'react'
-import style from './TopSearchForm.module.css'
 
 import SearchIcon from '@material-ui/icons/Search'
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import style from './TopSearchForm.module.css'
 import { logout } from '../../redux/auth_reducer'
 import { LOGIN_ROUTE } from '../../routes/const'
 import { AppStateType } from '../../redux/store'
@@ -25,11 +25,7 @@ const TopSearchForm: React.FC = () => {
 			</div>
 
 			{isAuth ? (
-				<div
-					onClick={onLogout}
-					title='logout'
-					className={style.topSearchForm__login}
-					style={{ fontWeight: 'bold' }}>
+				<div onClick={onLogout} title='logout' className={style.topSearchForm__login} style={{ fontWeight: 'bold' }}>
 					<div>{login}</div>
 				</div>
 			) : (

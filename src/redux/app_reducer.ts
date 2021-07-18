@@ -1,7 +1,6 @@
 import { getAuthUserData } from './auth_reducer'
 import { BaseThunkType, InferActionsTypes } from './store'
 
-
 export type InitialStateType = typeof initialState
 type ActionsType = InferActionsTypes<typeof actions>
 type ThunkType = BaseThunkType<ActionsType>
@@ -24,12 +23,12 @@ const appReducer = (state = initialState, action: ActionsType): InitialStateType
 
 export const actions = {
 	initializedSuccess: () => ({
-		type: ('APP:INITIALIZED_SUCCESS' as const),
-	})
+		type: 'APP:INITIALIZED_SUCCESS' as const,
+	}),
 }
 
 export const initializeApp = (): ThunkType => async dispatch => {
-	let promise = dispatch(getAuthUserData())
+	const promise = dispatch(getAuthUserData())
 	promise.then(() => {
 		dispatch(actions.initializedSuccess())
 	})
