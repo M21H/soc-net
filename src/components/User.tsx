@@ -19,6 +19,8 @@ const User: React.FC<UserType> = ({ id, photos, name, status, followed }) => {
 		dispatch(unfollow(id))
 	}
 
+	const isTruth = togFolInProg.some(userId => userId === id)  // хоч одна id з масива === User id  => true
+
 	return (
 		<div>
 			<NavLink to={`${PROFILE_ROUTE}/${id}`}>
@@ -28,13 +30,11 @@ const User: React.FC<UserType> = ({ id, photos, name, status, followed }) => {
 			<div>{name}</div>
 			<div>{status}</div>
 			{followed ? (
-				<button
-					disabled={togFolInProg.some(userId => userId === id)} // хоч одна id з масива === User id  => true
-					onClick={onUnFollow}>
+				<button disabled={isTruth} onClick={onUnFollow}>
 					Unfollow
 				</button>
 			) : (
-				<button disabled={togFolInProg.some(userId => userId === id)} onClick={onFollow}>
+				<button disabled={isTruth}	onClick={onFollow}>
 					Follow
 				</button>
 			)}

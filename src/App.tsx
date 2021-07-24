@@ -37,9 +37,7 @@ export const App = () => {
 						{isAuth &&
 							authRoutes.map(({ path, Component }) => <Route key={path} path={path} component={Component} exact />)}
 
-						{publicRoutes.map(({ path, Component }) => (
-							<Route key={path} path={path} component={Component} exact />
-						))}
+						{publicRoutes.map(({ path, Component }) => <Route key={path} path={path} component={Component} exact />)}
 						<Redirect to={LOGIN_ROUTE} />
 						<Route path='*' component={NotFound} />
 					</Switch>
