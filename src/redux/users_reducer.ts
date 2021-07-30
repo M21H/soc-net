@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux'
-import { UserType } from '../type/types'
+import { UserType } from '../types/types'
 import { ResponseType, ResultCodeEnum } from '../api/api'
 import { usersAPI, followAPI } from '../api'
 import { BaseThunkType, InferActionsTypes } from './store'

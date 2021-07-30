@@ -24,7 +24,7 @@ beforeEach(() => {
 followAPIMock.follow.mockReturnValue(Promise.resolve(result))
 followAPIMock.unfollow.mockReturnValue(Promise.resolve(result))
 
-it('success follow thunk ', async () => {
+it.skip('success follow thunk ', async () => {
   const thunk = follow(1)
 
   await thunk(dispatchMock, getStateMock, {})
@@ -35,7 +35,7 @@ it('success follow thunk ', async () => {
   expect(dispatchMock).toHaveBeenNthCalledWith(3, actions.setToggleFollowingInProgress(false, 1))
 })
 
-it('success unfollow thunk ', async () => {
+it.skip('success unfollow thunk ', async () => {
   const thunk = unfollow(1)
 
   await thunk(dispatchMock, getStateMock, {})

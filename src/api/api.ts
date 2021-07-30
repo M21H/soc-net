@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UserType } from '../type/types'
+import { UserType } from '../types/types'
 
 export const instance = axios.create({
 	baseURL: process.env.REACT_APP_BASE_URL,

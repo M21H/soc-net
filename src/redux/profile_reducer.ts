@@ -1,7 +1,7 @@
 import { FormAction, stopSubmit } from 'redux-form'
 import { ResultCodeEnum } from '../api/api'
 import { profileAPI } from '../api'
-import { PhotosType, PostType, ProfileType } from '../type/types'
+import { PhotosType, PostType, ProfileType } from '../types/types'
 import { BaseThunkType, InferActionsTypes } from './store'
 
 export type InitialStateType = typeof initialState

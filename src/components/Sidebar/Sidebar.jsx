@@ -4,8 +4,8 @@ import GroupIcon from '@material-ui/icons/Group'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 import ChatIcon from '@material-ui/icons/Chat'
 import { NavLink } from 'react-router-dom'
-import { Box } from '@material-ui/core'
-import { CHAT_ROUTE, DIALOGS_ROUTE, PROFILE_ROUTE, USERS_ROUTE } from '../../routes/const'
+import { Box, IconButton } from '@material-ui/core'
+import { CHAT_ROUTE, DIALOGS_ROUTE, PROFILE_ROUTE, USERS_ROUTE } from '../../utils/const'
 
 const Sidebar = () => {
 	const styles = {
@@ -34,27 +34,35 @@ const Sidebar = () => {
 				<MenuIcon style={{ ...styles.icon, color: 'white' }} />
 			</Box>
 
-			<Box style={styles.box}>
-				<NavLink to={PROFILE_ROUTE}>
-					<PersonIcon style={styles.icon} />
-				</NavLink>
-			</Box>
+			<NavLink to={PROFILE_ROUTE}>
+				<Box style={styles.box}>
+					<IconButton>
+						<PersonIcon style={styles.icon} />
+					</IconButton>
+				</Box>
+			</NavLink>
 
 			<NavLink to={DIALOGS_ROUTE}>
 				<Box style={styles.box}>
-					<QuestionAnswerIcon style={styles.icon} />
+					<IconButton>
+						<QuestionAnswerIcon style={styles.icon} />
+					</IconButton>
 				</Box>
 			</NavLink>
 
 			<NavLink to={USERS_ROUTE}>
 				<Box style={styles.box}>
-					<GroupIcon style={styles.icon} />
+					<IconButton>
+						<GroupIcon style={styles.icon} />
+					</IconButton>
 				</Box>
 			</NavLink>
 
 			<NavLink to={CHAT_ROUTE}>
 				<Box style={styles.box}>
-					<ChatIcon style={styles.icon} />
+					<IconButton>
+						<ChatIcon style={styles.icon} />
+					</IconButton>
 				</Box>
 			</NavLink>
 		</div>

@@ -1,6 +1,9 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { updateUserStatus } from '../../../redux/profile_reducer'
 
-const Status = ({ userStatus, updateUserStatus }) => {
+const Status = ({ userStatus }) => {
+	const dispatch = useDispatch()
 	const [editMode, setEditMode] = React.useState(false)
 	const [status, setStatus] = React.useState(userStatus)
 
@@ -14,7 +17,7 @@ const Status = ({ userStatus, updateUserStatus }) => {
 
 	const deactiveEditMode = () => {
 		setEditMode(false)
-		updateUserStatus(status)
+		dispatch(updateUserStatus(status))
 	}
 
 	const styles = {

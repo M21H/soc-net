@@ -1,7 +1,6 @@
 import { Avatar } from '@material-ui/core'
 import React from 'react'
-import { ChatMessageType } from './Messages'
-
+import { ChatMessageType } from '../../api/chatAPI'
 
 const Message: React.FC<{ message: ChatMessageType }> = ({ message }) => {
   return (

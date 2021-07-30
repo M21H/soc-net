@@ -7,7 +7,7 @@ import styled from './Login.module.css'
 import { createField, Input } from '../../common/FormsControls/FormsControls'
 import { AppStateType } from '../../redux/store'
 import { required } from '../../utils/validators/validators'
-import { PROFILE_ROUTE } from '../../routes/const'
+import { PROFILE_ROUTE } from '../../utils/const'
 
 type LoginFormValueType = {
 	email: string

@@ -1,4 +1,4 @@
-import { PhotosType, ProfileType } from '../type/types'
+import { PhotosType, ProfileType } from '../types/types'
 import { instance, ResponseType } from './api'
 
 type SavePhotoResponseType = {

@@ -1,0 +1,6 @@
+export { default as app } from './app_reducer'
+export { default as auth } from './auth_reducer'
+export { default as chat } from './chat_reducer'
+export { default as dialogsPage } from './dialogs_reducer'
+export { default as profilePage } from './profile_reducer'
+export { default as usersPage } from './users_reducer'

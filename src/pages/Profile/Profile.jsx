@@ -1,14 +1,39 @@
 import React from 'react'
 import { Avatar } from '@material-ui/core'
 import styles from './Profile.module.css'
-import PostContainer from './Posts/PostContainer'
-import Status from './Status/Status'
+import PostContainer from '../../components/Profile/Posts/PostContainer'
+import Status from '../../components/Profile/Status/Status'
 import Preloader from '../../common/Preloader/Preloader'
-import { ProfileInfo } from './ProfileInfo/ProfileInfo'
-import ProfileInfoFormReduxForm from './ProfileInfoForm/ProfileInfoForm'
+import { ProfileInfo } from '../../components/Profile/ProfileInfo/ProfileInfo'
+import ProfileInfoFormReduxForm from '../../components/Profile/ProfileInfoForm/ProfileInfoForm'
+import { useHistory, useParams } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserProfile, getUserStatus, savePhoto, saveProfile } from '../../redux/profile_reducer'
+import { PROFILE_ROUTE } from '../../utils/const'
 
-export const Profile = ({ profile, userStatus, updateUserStatus, isOwner, savePhoto, saveProfile }) => {
+const Profile = React.memo(() => {
+	const dispatch = useDispatch()
+	const history = useHistory()
+	let { userId } = useParams()
+
+	const { profile, userStatus } = useSelector(({ profilePage }) => profilePage)
+	const { userId: authorizedUserId } = useSelector(({ auth }) => auth)
+
 	const [editMode, setEditMode] = React.useState(false)
+	const isOwner = !userId
+
+	React.useEffect(() => {
+		if (!userId) {
+			userId = authorizedUserId
+			if (!userId) {
+				history.push(`${PROFILE_ROUTE}`)
+			}
+		} else if (Number(userId) === authorizedUserId) {
+			history.push(`${PROFILE_ROUTE}`)
+		}
+		dispatch(getUserProfile(userId))
+		dispatch(getUserStatus(userId))
+	}, [userId])
 
 	if (!profile) {
 		return <Preloader />
@@ -16,12 +41,12 @@ export const Profile = ({ profile, userStatus, updateUserStatus, isOwner, savePh
 
 	const onMainPhotoSelected = e => {
 		if (e.target.files.length) {
-			savePhoto(e.target.files[0])
+			dispatch(savePhoto(e.target.files[0]))
 		}
 	}
 
 	const onSubmit = formData => {
-		saveProfile(formData).then(() => setEditMode(false)) // чекаєм поки санка зарезолвиться успішно => виходим з режиму едітмод
+		dispatch(saveProfile(formData)).then(() => setEditMode(false))
 	}
 
 	return (
@@ -41,7 +66,7 @@ export const Profile = ({ profile, userStatus, updateUserStatus, isOwner, savePh
 
 						<div className={styles.profile__fullname}>
 							<p>{profile.fullName}</p>
-							<Status userStatus={userStatus} updateUserStatus={updateUserStatus} />
+							<Status userStatus={userStatus} />
 						</div>
 					</div>
 				</div>
@@ -59,4 +84,6 @@ export const Profile = ({ profile, userStatus, updateUserStatus, isOwner, savePh
 			</div>
 		</>
 	)
-}
+})
+
+export default Profile

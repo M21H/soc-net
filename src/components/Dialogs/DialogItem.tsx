@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { DIALOGS_ROUTE } from '../../routes/const'
+import { DIALOGS_ROUTE } from '../../utils/const'
 
 type PropsType = {
 	name: string

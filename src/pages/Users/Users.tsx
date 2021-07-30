@@ -2,18 +2,18 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import queryString from 'querystring'
-import User from '../components/User'
-import Paginator from '../common/Paginator/Paginator'
-import { UsersSearchForm } from '../components/UsersSearchForm'
+import User from '../../components/Users/User'
+import Paginator from '../../common/Paginator/Paginator'
+import { UsersSearchForm } from '../../components/Users/UsersSearchForm'
 import {
 	getAllUsers,
 	getCurrentPage,
 	getIsFetching,
 	getPageSize,
 	getUsersFilter,
-} from '../redux/reselectors/usersReselectors'
-import Preloader from '../common/Preloader/Preloader'
-import { FilterType, getUsers } from '../redux/users_reducer'
+} from '../../redux/reselectors/usersReselectors'
+import Preloader from '../../common/Preloader/Preloader'
+import { FilterType, getUsers } from '../../redux/users_reducer'
 
 type PropsType = {}
 type QueryParamsType = { term?: string; page?: string; friend?: string }

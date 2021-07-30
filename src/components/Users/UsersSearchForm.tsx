@@ -1,8 +1,8 @@
 import React from 'react'
 import { Form, Formik, Field } from 'formik'
 import { useSelector } from 'react-redux'
-import { FilterType } from '../redux/users_reducer'
-import { getUsersFilter } from '../redux/reselectors/usersReselectors'
+import { FilterType } from '../../redux/users_reducer'
+import { getUsersFilter } from '../../redux/reselectors/usersReselectors'
 
 type FriendFormType = 'true' | 'false' | 'null'
 
