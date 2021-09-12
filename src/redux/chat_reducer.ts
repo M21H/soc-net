@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Dispatch } from 'redux'
 import { FormAction } from 'redux-form'
 import { chatAPI, ChatMessageType } from '../api/chatAPI'
@@ -32,7 +34,7 @@ export const actions = {
 
 let _newMessageHandler: ((messages: ChatMessageType[]) => void) | null = null
 
-const newMessageHandlerCreator = (dispatch: Dispatch) => (messages: ChatMessageType[]) => {
+const newMessageHandlerCreator = (dispatch: Dispatch) => {
 	if (_newMessageHandler === null) {
 		_newMessageHandler = (messages) => {
 			dispatch(actions.setMessages(messages))
@@ -40,6 +42,7 @@ const newMessageHandlerCreator = (dispatch: Dispatch) => (messages: ChatMessageT
 		return _newMessageHandler
 	}
 }
+
 
 export const startMessagesListening = (): ThunkType => async dispatch => {
 	chatAPI.start()

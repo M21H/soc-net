@@ -1,5 +1,5 @@
 import React from 'react'
-import { DIALOGS_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, USERS_ROUTE, CHAT_ROUTE } from '../utils/const'
+// import { DIALOGS_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, USERS_ROUTE, CHAT_ROUTE } from '../utils/const'
 
 const Profile = React.lazy(() => import('../pages/Profile/Profile'))
 const Dialogs = React.lazy(() => import('../pages/Dialogs/Dialogs'))
@@ -7,28 +7,48 @@ const Users = React.lazy(() => import('../pages/Users/Users'))
 const Login = React.lazy(() => import('../pages/Login/Login'))
 const Chat = React.lazy(() => import('../pages/Chat/Chat'))
 
+export enum RouteName {
+	MAIN_ROUTE = '/',
+	PROFILE_ROUTE = '/profile',
+	DIALOGS_ROUTE = '/dialogs',
+	USERS_ROUTE = '/users',
+	LOGIN_ROUTE = '/login',
+	CHAT_ROUTE = '/chat',
+}
+
 export const authRoutes = [
 	{
-		path: `${PROFILE_ROUTE}/:userId?`,
-		Component: Profile,
+		path: `${RouteName.PROFILE_ROUTE}/:userId?`,
+		component: Profile,
+		exact: true,
 	},
 	{
-		path: DIALOGS_ROUTE,
-		Component: Dialogs,
+		path: RouteName.DIALOGS_ROUTE,
+		component: Dialogs,
+		exact: true,
 	},
 	{
-		path: CHAT_ROUTE,
-		Component: Chat,
+		path: RouteName.USERS_ROUTE,
+		component: Users,
+		exact: false,
 	},
+	{
+		path: RouteName.CHAT_ROUTE,
+		component: Chat,
+		exact: true,
+	},
+
 ]
 
 export const publicRoutes = [
 	{
-		path: USERS_ROUTE,
-		Component: Users,
+		path: RouteName.USERS_ROUTE,
+		component: Users,
+		exact: false,
 	},
 	{
-		path: LOGIN_ROUTE,
-		Component: Login,
+		path: RouteName.LOGIN_ROUTE,
+		component: Login,
+		exact: true,
 	},
 ]

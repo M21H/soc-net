@@ -1,5 +1,6 @@
 import { AppStateType } from '../store'
 
+
 export const getAllUsers = (state: AppStateType) => {
 	return state.usersPage.users
 }

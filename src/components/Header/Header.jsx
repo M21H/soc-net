@@ -2,12 +2,13 @@ import { NavLink } from 'react-router-dom'
 import style from './Header.module.css'
 import { HeaderMenu } from './HeaderMenu'
 import logo from '../../assets/img/logo.png'
+import { RouteName } from '../../routes/routes'
 
 const Header = () => {
 	return (
 		<div className={style.header}>
 			<div className={style.header__container}>
-				<NavLink to='/' style={{ textDecoration: 'inherit', color: 'inherit' }}>
+				<NavLink to={RouteName.PROFILE_ROUTE} style={{ textDecoration: 'inherit', color: 'inherit' }}>
 					<div className={style.header__logo}>
 						<img src={logo} alt='logo' />
 						<div className={style.header__title}>

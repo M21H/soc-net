@@ -5,7 +5,7 @@ import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
 import ChatIcon from '@material-ui/icons/Chat'
 import { NavLink } from 'react-router-dom'
 import { Box, IconButton } from '@material-ui/core'
-import { CHAT_ROUTE, DIALOGS_ROUTE, PROFILE_ROUTE, USERS_ROUTE } from '../../utils/const'
+import { RouteName } from '../../routes/routes'
 
 const Sidebar = () => {
 	const styles = {
@@ -34,7 +34,7 @@ const Sidebar = () => {
 				<MenuIcon style={{ ...styles.icon, color: 'white' }} />
 			</Box>
 
-			<NavLink to={PROFILE_ROUTE}>
+			<NavLink to={RouteName.PROFILE_ROUTE}>
 				<Box style={styles.box}>
 					<IconButton>
 						<PersonIcon style={styles.icon} />
@@ -42,7 +42,7 @@ const Sidebar = () => {
 				</Box>
 			</NavLink>
 
-			<NavLink to={DIALOGS_ROUTE}>
+			<NavLink to={RouteName.DIALOGS_ROUTE}>
 				<Box style={styles.box}>
 					<IconButton>
 						<QuestionAnswerIcon style={styles.icon} />
@@ -50,7 +50,7 @@ const Sidebar = () => {
 				</Box>
 			</NavLink>
 
-			<NavLink to={USERS_ROUTE}>
+			<NavLink to={RouteName.USERS_ROUTE}>
 				<Box style={styles.box}>
 					<IconButton>
 						<GroupIcon style={styles.icon} />
@@ -58,7 +58,7 @@ const Sidebar = () => {
 				</Box>
 			</NavLink>
 
-			<NavLink to={CHAT_ROUTE}>
+			<NavLink to={RouteName.CHAT_ROUTE}>
 				<Box style={styles.box}>
 					<IconButton>
 						<ChatIcon style={styles.icon} />

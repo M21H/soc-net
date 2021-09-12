@@ -7,7 +7,7 @@ import styled from './Login.module.css'
 import { createField, Input } from '../../common/FormsControls/FormsControls'
 import { AppStateType } from '../../redux/store'
 import { required } from '../../utils/validators/validators'
-import { PROFILE_ROUTE } from '../../utils/const'
+import { RouteName } from '../../routes/routes'
 
 type LoginFormValueType = {
 	email: string
@@ -26,7 +26,7 @@ const Login: React.FC = () => {
 	const onSubmit = (formData: LoginFormValueType) => {
 		dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
 	}
-	return isAuth ? <Redirect to={PROFILE_ROUTE} /> : <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl} />
+	return isAuth ? <Redirect to={RouteName.PROFILE_ROUTE} /> : <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl} />
 }
 
 type LoginFormOwnPropsType = {

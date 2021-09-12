@@ -9,15 +9,18 @@ import ProfileInfoFormReduxForm from '../../components/Profile/ProfileInfoForm/P
 import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile, getUserStatus, savePhoto, saveProfile } from '../../redux/profile_reducer'
-import { PROFILE_ROUTE } from '../../utils/const'
+import { RouteName } from '../../routes/routes'
 
 const Profile = React.memo(() => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	let { userId } = useParams()
 
-	const { profile, userStatus } = useSelector(({ profilePage }) => profilePage)
-	const { userId: authorizedUserId } = useSelector(({ auth }) => auth)
+	const { profile, userStatus, userId: authorizedUserId } = useSelector(({ profilePage, auth }) => ({
+		profile: profilePage.profile,
+		userStatus: profilePage.userStatus,
+		userId: auth.userId
+	}))
 
 	const [editMode, setEditMode] = React.useState(false)
 	const isOwner = !userId
@@ -26,10 +29,10 @@ const Profile = React.memo(() => {
 		if (!userId) {
 			userId = authorizedUserId
 			if (!userId) {
-				history.push(`${PROFILE_ROUTE}`)
+				history.push(`${RouteName.PROFILE_ROUTE}`)
 			}
 		} else if (Number(userId) === authorizedUserId) {
-			history.push(`${PROFILE_ROUTE}`)
+			history.push(`${RouteName.PROFILE_ROUTE}`)
 		}
 		dispatch(getUserProfile(userId))
 		dispatch(getUserStatus(userId))

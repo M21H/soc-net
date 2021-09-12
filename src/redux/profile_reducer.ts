@@ -63,56 +63,56 @@ export const actions = {
 
 export const getUserProfile =
 	(userId: number): ThunkType =>
-	async dispatch => {
-		const data = await profileAPI.getProfile(userId)
-		dispatch(actions.setUserProfile(data))
-	}
+		async dispatch => {
+			const data = await profileAPI.getProfile(userId)
+			dispatch(actions.setUserProfile(data))
+		}
 
 export const getUserStatus =
 	(userId: number): ThunkType =>
-	async dispatch => {
-		const data = await profileAPI.getStatus(userId)
-		dispatch(actions.setUserStatus(data))
-	}
+		async dispatch => {
+			const data = await profileAPI.getStatus(userId)
+			dispatch(actions.setUserStatus(data))
+		}
 
 export const updateUserStatus =
 	(status: string): ThunkType =>
-	async dispatch => {
-		try {
-			const data = await profileAPI.updateStatus(status)
-			if (data.resultCode === ResultCodeEnum.Success) {
-				dispatch(actions.setUserStatus(status))
+		async dispatch => {
+			try {
+				const data = await profileAPI.updateStatus(status)
+				if (data.resultCode === ResultCodeEnum.Success) {
+					dispatch(actions.setUserStatus(status))
+				}
+			} catch (error) {
+				console.log(error)
 			}
-		} catch (error) {
-			console.log(error)
 		}
-	}
 
 export const savePhoto =
 	(file: File): ThunkType =>
-	async dispatch => {
-		const data = await profileAPI.savePhoto(file)
-		if (data.resultCode === ResultCodeEnum.Success) {
-			dispatch(actions.savePhotoSuccess(data.data.photos))
+		async dispatch => {
+			const data = await profileAPI.savePhoto(file)
+			if (data.resultCode === ResultCodeEnum.Success) {
+				dispatch(actions.savePhotoSuccess(data.data.photos))
+			}
 		}
-	}
 
 export const saveProfile =
 	(profile: ProfileType): ThunkType =>
-	async (dispatch, getState) => {
-		const { userId } = getState().auth
-		const data = await profileAPI.saveProfile(profile)
-		if (data.resultCode === ResultCodeEnum.Success) {
-			if (userId != null) {
-				dispatch(getUserProfile(userId))
+		async (dispatch, getState) => {
+			const { userId } = getState().auth
+			const data = await profileAPI.saveProfile(profile)
+			if (data.resultCode === ResultCodeEnum.Success) {
+				if (userId != null) {
+					dispatch(getUserProfile(userId))
+				} else {
+					throw new Error("userId can't be null")
+				}
 			} else {
-				throw new Error("userId can't be null")
+				// dispatch(stopSubmit('edit-profile', { contacts: { facebook: response.data.messages[0] } }))
+				dispatch(stopSubmit('edit-profile', { _error: data.messages[0] }))
+				return Promise.reject(data.messages[0])
 			}
-		} else {
-			// dispatch(stopSubmit('edit-profile', { contacts: { facebook: response.data.messages[0] } }))
-			dispatch(stopSubmit('edit-profile', { _error: data.messages[0] }))
-			return Promise.reject(data.messages[0])
 		}
-	}
 
 export default profileReducer

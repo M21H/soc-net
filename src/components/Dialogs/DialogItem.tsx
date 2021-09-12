@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { DIALOGS_ROUTE } from '../../utils/const'
+import { RouteName } from '../../routes/routes'
 
 type PropsType = {
 	name: string
@@ -8,7 +8,7 @@ type PropsType = {
 }
 
 const DialogItem: React.FC<PropsType> = ({ name, id }) => {
-	const path = `${DIALOGS_ROUTE}/${id}`
+	const path = `${RouteName.DIALOGS_ROUTE}/${id}`
 
 	return (
 		<div>

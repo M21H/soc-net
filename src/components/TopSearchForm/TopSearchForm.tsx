@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import style from './TopSearchForm.module.css'
 import { logout } from '../../redux/auth_reducer'
 import { AppStateType } from '../../redux/store'
-import { LOGIN_ROUTE } from '../../utils/const'
+import { RouteName } from '../../routes/routes'
 
 const TopSearchForm: React.FC = () => {
 	const dispatch = useDispatch()
@@ -29,7 +29,7 @@ const TopSearchForm: React.FC = () => {
 					<div>{login}</div>
 				</div>
 			) : (
-				<NavLink to={LOGIN_ROUTE}>
+				<NavLink to={RouteName.LOGIN_ROUTE}>
 					<div className={style.topSearchForm__login}>
 						<PowerSettingsNewIcon style={{ fontSize: 'xx-large' }} />
 					</div>
