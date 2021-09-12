@@ -1,0 +1,2 @@
+(this["webpackJsonpsoc-net"]=this["webpackJsonpsoc-net"]||[]).push([[10],{374:function(n,t,o){n.exports={notFound:"NotFound_notFound__3ZFK1"}},377:function(n,t,o){"use strict";o.r(t);o(0);var e=o(22),c=o(374),s=o.n(c),i=o(2);t.default=function(){return Object(i.jsxs)("div",{className:s.a.notFound,children:[Object(i.jsx)("h1",{children:"PAGE NOT FOUND 404"}),Object(i.jsx)("p",{children:"What are you looking for..."}),Object(i.jsx)(e.b,{to:"/",children:Object(i.jsx)("p",{style:{marginTop:20},children:"Go to main page"})})]})}}}]);
+//# sourceMappingURL=10.de731fa2.chunk.js.map

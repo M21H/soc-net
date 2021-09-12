@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/pages/NotFound/NotFound.module.css"],"names":[],"mappings":"AAAA,0BACC,YAAa,CACb,qBAAsB,CACtB,sBAAuB,CACvB,kBAAmB,CACnB,0BACD","file":"10.ac02b872.chunk.css","sourcesContent":[".notFound {\n\tdisplay: flex;\n\tflex-direction: column;\n\tjustify-content: center;\n\talign-items: center;\n\theight: calc(100vh - 140px);\n}\n"]}
