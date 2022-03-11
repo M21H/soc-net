@@ -1,11 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Redirect } from 'react-router'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { login } from '../../redux/auth_reducer'
 import styled from './Login.module.css'
 import { createField, Input } from '../../common/FormsControls/FormsControls'
-import { AppStateType } from '../../redux/store'
+import { useAppSelector } from '../../redux/store'
 import { required } from '../../utils/validators/validators'
 import { RouteName } from '../../routes/routes'
 
@@ -21,7 +21,7 @@ type LoginFormValueTypeKeys = Extract<keyof LoginFormValueType, string> // 'emai
 
 const Login: React.FC = () => {
 	const dispatch = useDispatch()
-	const { isAuth, captchaUrl } = useSelector(({ auth }: AppStateType) => auth)
+	const { isAuth, captchaUrl } = useAppSelector(({ auth }) => auth)
 
 	const onSubmit = (formData: LoginFormValueType) => {
 		dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))

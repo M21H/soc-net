@@ -6,12 +6,12 @@ import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './TopSearchForm.module.css'
 import { logout } from '../../redux/auth_reducer'
-import { AppStateType } from '../../redux/store'
 import { RouteName } from '../../routes/routes'
+import { useAppSelector } from '../../redux/store'
 
 const TopSearchForm: React.FC = () => {
 	const dispatch = useDispatch()
-	const { login, isAuth } = useSelector(({ auth }: AppStateType) => auth)
+	const { login, isAuth } = useAppSelector(({ auth }) => auth)
 
 	const onLogout = () => {
 		dispatch(logout())

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import queryString from 'querystring'
 import User from '../../components/Users/User'
@@ -14,16 +14,17 @@ import {
 } from '../../redux/reselectors/usersReselectors'
 import Preloader from '../../common/Preloader/Preloader'
 import { FilterType, getUsers } from '../../redux/users_reducer'
+import { useAppSelector } from '../../redux/store'
 
 type PropsType = {}
 type QueryParamsType = { term?: string; page?: string; friend?: string }
 
 const Users: React.FC<PropsType> = () => {
-	const users = useSelector(getAllUsers)
-	const pageSize = useSelector(getPageSize)
-	const currentPage = useSelector(getCurrentPage)
-	const filter = useSelector(getUsersFilter)
-	const isFetching = useSelector(getIsFetching)
+	const users = useAppSelector(getAllUsers)
+	const pageSize = useAppSelector(getPageSize)
+	const currentPage = useAppSelector(getCurrentPage)
+	const filter = useAppSelector(getUsersFilter)
+	const isFetching = useAppSelector(getIsFetching)
 
 	const dispatch = useDispatch()
 	const history = useHistory()

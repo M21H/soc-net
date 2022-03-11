@@ -3,8 +3,8 @@ import style from './Dialogs.module.css'
 import DialogItem from '../../components/Dialogs/DialogItem'
 import MessageItem from '../../components/Dialogs/MessageItem'
 import { actions } from '../../redux/dialogs_reducer'
-import { AppStateType } from '../../redux/store'
 import AddMessageForm from '../../components/Dialogs/AddMessageForm'
+import { useAppSelector } from '../../redux/store'
 
 export type NewMessageFormValueType = {
 	newMessageText: string
@@ -12,7 +12,7 @@ export type NewMessageFormValueType = {
 
 const Dialogs = () => {
 	const dispatch = useDispatch()
-	const { dialogs, messages } = useSelector(({ dialogsPage }: AppStateType) => dialogsPage)
+	const { dialogs, messages } = useAppSelector(({ dialogsPage }) => dialogsPage)
 
 	const onSendMessage = (value: NewMessageFormValueType) => {
 		dispatch(actions.sendMessage(value.newMessageText))

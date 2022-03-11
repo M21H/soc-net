@@ -2,7 +2,7 @@
 
 import { Dispatch } from 'redux'
 import { FormAction } from 'redux-form'
-import { chatAPI, ChatMessageType } from '../api/chatAPI'
+import { chatAPI, ChatMessageType } from '../APIServices/chatAPI'
 import { BaseThunkType, InferActionsTypes } from './store'
 
 export type InitialStateType = typeof initialState

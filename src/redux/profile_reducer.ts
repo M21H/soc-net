@@ -1,8 +1,8 @@
 import { FormAction, stopSubmit } from 'redux-form'
-import { ResultCodeEnum } from '../api/api'
-import { profileAPI } from '../api'
+import { ResultCodeEnum } from '../APIServices/api'
 import { PhotosType, PostType, ProfileType } from '../types/types'
 import { BaseThunkType, InferActionsTypes } from './store'
+import ProfileServices from '../APIServices/ProfileService'
 
 export type InitialStateType = typeof initialState
 type ActionsType = InferActionsTypes<typeof actions>
@@ -64,14 +64,14 @@ export const actions = {
 export const getUserProfile =
 	(userId: number): ThunkType =>
 		async dispatch => {
-			const data = await profileAPI.getProfile(userId)
+			const data = await ProfileServices.getProfile(userId)
 			dispatch(actions.setUserProfile(data))
 		}
 
 export const getUserStatus =
 	(userId: number): ThunkType =>
 		async dispatch => {
-			const data = await profileAPI.getStatus(userId)
+			const data = await ProfileServices.getStatus(userId)
 			dispatch(actions.setUserStatus(data))
 		}
 
@@ -79,7 +79,7 @@ export const updateUserStatus =
 	(status: string): ThunkType =>
 		async dispatch => {
 			try {
-				const data = await profileAPI.updateStatus(status)
+				const data = await ProfileServices.updateStatus(status)
 				if (data.resultCode === ResultCodeEnum.Success) {
 					dispatch(actions.setUserStatus(status))
 				}
@@ -91,7 +91,7 @@ export const updateUserStatus =
 export const savePhoto =
 	(file: File): ThunkType =>
 		async dispatch => {
-			const data = await profileAPI.savePhoto(file)
+			const data = await ProfileServices.savePhoto(file)
 			if (data.resultCode === ResultCodeEnum.Success) {
 				dispatch(actions.savePhotoSuccess(data.data.photos))
 			}
@@ -101,7 +101,7 @@ export const saveProfile =
 	(profile: ProfileType): ThunkType =>
 		async (dispatch, getState) => {
 			const { userId } = getState().auth
-			const data = await profileAPI.saveProfile(profile)
+			const data = await ProfileServices.saveProfile(profile)
 			if (data.resultCode === ResultCodeEnum.Success) {
 				if (userId != null) {
 					dispatch(getUserProfile(userId))

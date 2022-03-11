@@ -1,5 +1,5 @@
-import { followAPI } from "../api"
-import { ResponseType, ResultCodeEnum } from "../api/api"
+import { followAPI } from "../APIServices"
+import { ResponseType, ResultCodeEnum } from "../APIServices/api"
 import { actions, follow, unfollow } from "../redux/users_reducer"
 jest.mock('../api')
 const followAPIMock = followAPI as jest.Mocked<typeof followAPI>

@@ -7,16 +7,17 @@ import Preloader from '../../common/Preloader/Preloader'
 import { ProfileInfo } from '../../components/Profile/ProfileInfo/ProfileInfo'
 import ProfileInfoFormReduxForm from '../../components/Profile/ProfileInfoForm/ProfileInfoForm'
 import { useHistory, useParams } from 'react-router'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getUserProfile, getUserStatus, savePhoto, saveProfile } from '../../redux/profile_reducer'
 import { RouteName } from '../../routes/routes'
+import { useAppSelector } from '../../redux/store'
 
 const Profile = React.memo(() => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	let { userId } = useParams()
 
-	const { profile, userStatus, userId: authorizedUserId } = useSelector(({ profilePage, auth }) => ({
+	const { profile, userStatus, userId: authorizedUserId } = useAppSelector(({ profilePage, auth }) => ({
 		profile: profilePage.profile,
 		userStatus: profilePage.userStatus,
 		userId: auth.userId

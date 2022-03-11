@@ -1,14 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router'
-import { AppStateType } from '../redux/store'
+import { useAppSelector } from '../redux/store'
 import { RouteName } from './routes'
 import { authRoutes, publicRoutes } from './routes'
 
 const NotFound = React.lazy(() => import('../pages/NotFound/NotFound'))
 
 export const AppRoutes: React.FC = () => {
-	const { isAuth } = useSelector(({ auth }: AppStateType) => auth)
+	const { isAuth } = useAppSelector(({ auth }) => auth)
 
 	return (
 		<React.Suspense fallback={<div>Loading...</div>}>

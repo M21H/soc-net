@@ -1,8 +1,10 @@
 import { Dispatch } from 'redux'
 import { UserType } from '../types/types'
-import { ResponseType, ResultCodeEnum } from '../api/api'
-import { usersAPI, followAPI } from '../api'
+import { ResponseType, ResultCodeEnum } from '../APIServices/api'
+import { usersAPI } from '../APIServices'
 import { BaseThunkType, InferActionsTypes } from './store'
+import FollowService from '../APIServices/FollowService'
+import UsersService from '../APIServices/UsersService'
 
 export type InitialState = typeof initialState
 export type FilterType = typeof initialState.filter
@@ -92,7 +94,7 @@ export const getUsers =
 			dispatch(actions.toggleIsFetching(true))
 			dispatch(actions.setCurrentPage(currentPage))
 			dispatch(actions.setFilter(filter))
-			const data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
+			const data = await UsersService.getUsers(currentPage, pageSize, filter.term, filter.friend)
 			dispatch(actions.toggleIsFetching(false))
 			dispatch(actions.setUsers(data.items))
 			dispatch(actions.setUsersCount(data.totalCount))
@@ -110,13 +112,13 @@ const _followUnfollow = async (dispatch: Dispatch<ActionsTypes>, userId: number,
 export const follow =
 	(userId: number): ThunkType =>
 		async dispatch => {
-			await _followUnfollow(dispatch, userId, followAPI.follow.bind(followAPI))
+			await _followUnfollow(dispatch, userId, FollowService.follow.bind(FollowService))
 		}
 
 export const unfollow =
 	(userId: number): ThunkType =>
 		async dispatch => {
-			await _followUnfollow(dispatch, userId, followAPI.unfollow.bind(followAPI))
+			await _followUnfollow(dispatch, userId, FollowService.unfollow.bind(FollowService))
 		}
 
 export default usersReducer

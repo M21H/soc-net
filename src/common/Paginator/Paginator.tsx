@@ -1,8 +1,8 @@
 import React from 'react'
 import cn from 'classnames'
-import { useSelector } from 'react-redux'
 import style from './Paginator.module.css'
 import { getTotalUsersCount } from '../../redux/reselectors/usersReselectors'
+import { useAppSelector } from '../../redux/store'
 
 type PropsType = {
 	pageSize: number
@@ -12,7 +12,7 @@ type PropsType = {
 }
 
 const Paginator: React.FC<PropsType> = ({ pageSize, currentPage, onPageChanged, portionSize = 10 }) => {
-	const totalItemsCount = useSelector(getTotalUsersCount)
+	const totalItemsCount = useAppSelector(getTotalUsersCount)
 
 	const pagesCount = Math.ceil(totalItemsCount / pageSize)
 	const pages: Array<number> = []
